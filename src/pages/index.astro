@@ -188,7 +188,7 @@ import Layout from '../layouts/Layout.astro';
           Lassen Sie uns herausfinden, wo in Ihrem Unternehmen das größte Potenzial liegt. Schreiben Sie uns — unverbindlich und unkompliziert. Wir melden uns innerhalb von 24 Stunden.
         </p>
 
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
+        <form id="contact-form" class="space-y-6">
           <!-- E-Mail (Pflicht) -->
           <div>
             <label for="email" class="block text-sm font-medium text-slate-300 mb-2">E-Mail-Adresse *</label>
@@ -226,6 +226,29 @@ import Layout from '../layouts/Layout.astro';
             />
           </div>
 
+          <!-- Interessen -->
+          <fieldset>
+            <legend class="block text-sm font-medium text-slate-300 mb-3">Ich bin interessiert an</legend>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <input type="checkbox" name="interest" value="KI-Workshop" class="accent-accent-500 w-4 h-4 shrink-0" />
+                <span class="text-sm text-slate-300">KI-Workshop für mein Team</span>
+              </label>
+              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <input type="checkbox" name="interest" value="Strategieberatung" class="accent-accent-500 w-4 h-4 shrink-0" />
+                <span class="text-sm text-slate-300">Strategieberatung</span>
+              </label>
+              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <input type="checkbox" name="interest" value="Machbarkeitsanalyse" class="accent-accent-500 w-4 h-4 shrink-0" />
+                <span class="text-sm text-slate-300">Machbarkeitsanalyse</span>
+              </label>
+              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <input type="checkbox" name="interest" value="Individuelle Lösung" class="accent-accent-500 w-4 h-4 shrink-0" />
+                <span class="text-sm text-slate-300">Individuelle Lösung</span>
+              </label>
+            </div>
+          </fieldset>
+
           <!-- Nachricht -->
           <div>
             <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Nachricht</label>
@@ -247,10 +270,30 @@ import Layout from '../layouts/Layout.astro';
           </button>
         </form>
 
-        <!-- Datenschutzhinweis -->
-        <p class="text-xs text-slate-500 text-center mt-6">
-          Mit dem Absenden stimmen Sie zu, dass wir Ihre Daten zur Beantwortung Ihrer Anfrage verwenden. Kein Spam, versprochen.
-        </p>
+        <script>
+          document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const company = document.getElementById('company').value;
+            const message = document.getElementById('message').value;
+
+            const interests = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value);
+
+            const lines = [];
+            if (name) lines.push('Name: ' + name);
+            if (company) lines.push('Unternehmen: ' + company);
+            if (email) lines.push('E-Mail: ' + email);
+            if (interests.length) lines.push('Interesse an: ' + interests.join(', '));
+            if (message) lines.push('\n' + message);
+
+            const body = encodeURIComponent(lines.join('\n'));
+            const subject = encodeURIComponent('KI-Beratung – Anfrage' + (company ? ' (' + company + ')' : ''));
+            const to = 'hello@tobi-weber.com,christian.braun@theempathicdev.de';
+
+            window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+          });
+        </script>
       </div>
     </div>
   </section>
@@ -260,7 +303,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <span class="text-sm text-slate-500">&copy; 2026 Christian Braun & Tobias Weber</span>
       <div class="flex gap-6">
-        <a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Impressum</a>
+        <a href="/impressum" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Impressum</a>
         <a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Datenschutz</a>
       </div>
     </div>

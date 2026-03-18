@@ -7,7 +7,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <span class="text-white font-bold text-lg tracking-tight">Braun & Weber</span>
+      <span class="text-white font-bold text-lg tracking-tight">Braun & Weber KI-Beratung</span>
       <div class="hidden md:flex items-center gap-8">
         <a href="#leistungen" class="text-sm text-slate-200 hover:text-white transition-colors">Leistungen</a>
         <a href="#ueber-uns" class="text-sm text-slate-200 hover:text-white transition-colors">Über uns</a>
@@ -16,9 +16,15 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </nav>
 
+  <!-- Background Blobs -->
+  <div class="blob-container" aria-hidden="true">
+    <div class="gradient-blob" id="blob-1"></div>
+    <div class="gradient-blob-sm" id="blob-2"></div>
+    <div class="gradient-blob" id="blob-3"></div>
+  </div>
+
   <!-- SEKTION 1: Hero -->
   <section class="relative min-h-screen flex items-center pt-20">
-    <div class="gradient-blob top-10 -right-40 md:right-0"></div>
     <div class="max-w-6xl mx-auto px-6 py-20 md:py-32 relative z-10">
       <div class="max-w-3xl">
         <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8">
@@ -39,7 +45,6 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- SEKTION 2: Das Versprechen -->
   <section id="leistungen" class="relative py-24 md:py-32">
-    <div class="gradient-blob-sm -left-40 top-20"></div>
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
         Viele Unternehmen haben KI ausprobiert — und waren nicht überzeugt. Das ist nachvollziehbar. Doch die Technologie hat sich innerhalb kürzester Zeit grundlegend weiterentwickelt. Was vor wenigen Monaten noch Experiment war, ist heute ein produktionsreifes Werkzeug. Unternehmen in Ihrer Branche setzen es bereits ein. In unseren Workshops zeigen wir nicht nur, was möglich ist — wir erarbeiten mit Ihnen einen konkreten Plan, wie Sie KI in Ihrem Unternehmen einsetzen können.
@@ -90,7 +95,6 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- SEKTION 3: Wer wir sind -->
   <section id="ueber-uns" class="relative py-24 md:py-32">
-    <div class="gradient-blob-sm right-0 top-40"></div>
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Wer wir sind</h2>
       <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
@@ -180,7 +184,6 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- SEKTION 4: Kontakt -->
   <section id="kontakt" class="relative py-24 md:py-32">
-    <div class="gradient-blob -left-60 bottom-0"></div>
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <div class="max-w-2xl mx-auto">
         <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 text-center">Sprechen wir darüber</h2>
@@ -283,6 +286,88 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+
+  <!-- Blob interaction (progressive enhancement) -->
+  <script>
+    const blobs = document.querySelectorAll('.gradient-blob, .gradient-blob-sm');
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // On desktop: stop CSS animations, JS takes over fully
+    // On mobile: keep CSS animations, no JS movement
+    if (!isTouch) {
+      blobs.forEach(blob => blob.style.animation = 'none');
+    }
+
+    // Different speeds, drift patterns, and mouse weights per blob
+    // startX/Y are offsets from their CSS top/left positions
+    const config = [
+      { startX: 0, startY: 0, speed: 0.025, driftRadius: 120, driftSpeed: 0.0008, mouseWeight: 0.35 },
+      { startX: 0, startY: 0, speed: 0.015, driftRadius: 180, driftSpeed: 0.0005, mouseWeight: 0.2  },
+      { startX: 0, startY: 0, speed: 0.01,  driftRadius: 150, driftSpeed: 0.0006, mouseWeight: 0.15 },
+    ];
+
+    // Read actual CSS positions for mouse-relative calculations
+    const blobRects = Array.from(blobs).map(b => {
+      const r = b.getBoundingClientRect();
+      return { cx: r.left + r.width / 2, cy: r.top + r.height / 2 };
+    });
+
+    const state = config.map(c => ({
+      x: c.startX,
+      y: c.startY,
+      targetX: c.startX,
+      targetY: c.startY,
+      homeX: c.startX,
+      homeY: c.startY,
+    }));
+
+    let mouseX = vw / 2;
+    let mouseY = vh / 2;
+    let time = 0;
+
+    function animate() {
+      time++;
+      state.forEach((s, i) => {
+        const c = config[i];
+
+        // Autonomous drift: each blob orbits its own unique path
+        const phase = i * 2.1;
+        const driftX = Math.sin(time * c.driftSpeed + phase) * c.driftRadius
+                     + Math.cos(time * c.driftSpeed * 0.7 + phase * 1.3) * c.driftRadius * 0.5;
+        const driftY = Math.cos(time * c.driftSpeed * 0.9 + phase * 0.8) * c.driftRadius
+                     + Math.sin(time * c.driftSpeed * 0.6 + phase * 1.7) * c.driftRadius * 0.4;
+
+        if (isTouch) {
+          // Mobile: only autonomous drift, no interaction
+          s.targetX = driftX;
+          s.targetY = driftY;
+        } else {
+          // Desktop: blend autonomous drift with mouse attraction
+          const autoX = driftX;
+          const autoY = driftY;
+          const pullX = mouseX - blobRects[i].cx;
+          const pullY = mouseY - blobRects[i].cy;
+          s.targetX = autoX + pullX * c.mouseWeight;
+          s.targetY = autoY + pullY * c.mouseWeight;
+        }
+
+        s.x += (s.targetX - s.x) * c.speed;
+        s.y += (s.targetY - s.y) * c.speed;
+        blobs[i].style.transform = `translate(${s.x}px, ${s.y}px) translateZ(0)`;
+      });
+      requestAnimationFrame(animate);
+    }
+
+    if (!isTouch) {
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      animate();
+    }
+  </script>
 
   <!-- Footer -->
   <footer class="border-t border-white/5 py-8">

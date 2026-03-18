@@ -15,6 +15,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background-color: var(--color-navy-950);
 }
 
 body {
@@ -25,24 +26,96 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.gradient-blob {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 40%, #f97316, #ec4899 40%, #a855f7 70%, transparent 100%);
-  filter: blur(80px);
-  opacity: 0.5;
+.blob-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
 }
 
+.gradient-blob,
 .gradient-blob-sm {
   position: absolute;
-  width: 300px;
-  height: 300px;
   border-radius: 50%;
+  pointer-events: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.gradient-blob {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at 30% 40%, #f97316, #ec4899 40%, #a855f7 70%, transparent 100%);
+  filter: blur(80px);
+  -webkit-filter: blur(80px);
+  opacity: 0.45;
+}
+
+.gradient-blob-sm {
+  width: 400px;
+  height: 400px;
   background: radial-gradient(circle at 40% 50%, #f97316, #ec4899 50%, #a855f7 80%, transparent 100%);
   filter: blur(60px);
-  opacity: 0.4;
-  pointer-events: none;
+  -webkit-filter: blur(60px);
+  opacity: 0.35;
+}
+
+/* Mobile: smaller blobs */
+@media (max-width: 768px) {
+  .gradient-blob {
+    width: 350px;
+    height: 350px;
+    filter: blur(60px);
+    -webkit-filter: blur(60px);
+  }
+  .gradient-blob-sm {
+    width: 250px;
+    height: 250px;
+    filter: blur(50px);
+    -webkit-filter: blur(50px);
+  }
+}
+
+/* CSS-only fallback: use transform instead of top/left for Safari perf */
+#blob-1 {
+  top: 10%;
+  left: 20%;
+  animation: wander-1 20s ease-in-out infinite alternate;
+}
+
+#blob-2 {
+  top: 40%;
+  left: 50%;
+  animation: wander-2 25s ease-in-out infinite alternate;
+}
+
+#blob-3 {
+  top: 65%;
+  left: 10%;
+  animation: wander-3 22s ease-in-out infinite alternate;
+}
+
+@keyframes wander-1 {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(15vw, 10vh); }
+  50%  { transform: translate(-10vw, 20vh); }
+  75%  { transform: translate(20vw, -5vh); }
+  100% { transform: translate(-5vw, 15vh); }
+}
+
+@keyframes wander-2 {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-20vw, -15vh); }
+  50%  { transform: translate(10vw, 10vh); }
+  75%  { transform: translate(-15vw, 20vh); }
+  100% { transform: translate(5vw, -10vh); }
+}
+
+@keyframes wander-3 {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(20vw, -10vh); }
+  50%  { transform: translate(-5vw, 15vh); }
+  75%  { transform: translate(15vw, 5vh); }
+  100% { transform: translate(-10vw, -15vh); }
 }

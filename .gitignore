@@ -17,5 +17,6 @@ dist/
 
 # Project-internal (not for repo)
 CLAUDE.md
+.claude
 docs/
 example-images/

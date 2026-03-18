@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Christian Braun & Tobias Weber — KI-Beratung">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <span class="text-white font-bold text-lg tracking-tight">Braun & Weber</span>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#leistungen" class="text-sm text-slate-300 hover:text-white transition-colors">Leistungen</a>
+        <a href="#ueber-uns" class="text-sm text-slate-300 hover:text-white transition-colors">Über uns</a>
+        <a href="#kontakt" class="text-sm text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-2 rounded-lg transition-colors">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SEKTION 1: Hero -->
+  <section class="relative min-h-screen flex items-center pt-20">
+    <div class="gradient-blob top-10 -right-40 md:right-0"></div>
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-32 relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8">
+          KI ist der Hebel.<br />Ihr Team ist die Kraft.
+        </h1>
+        <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mb-10">
+          Als Software-Entwickler setzen wir KI seit Jahren täglich ein — und erleben, wie Aufgaben, die früher Stunden gebraucht haben, in einem Bruchteil der Zeit erledigt sind. Recherche, Texte, Analysen, Dokumentation, Code. Der Produktivitätssprung ist real, er ist messbar, und er ist heute für jedes Unternehmen zugänglich.
+        </p>
+        <a
+          href="#kontakt"
+          class="inline-block bg-accent-500 hover:bg-accent-400 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
+        >
+          Jetzt Potenziale heben
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKTION 2: Das Versprechen -->
+  <section id="leistungen" class="relative py-24 md:py-32">
+    <div class="gradient-blob-sm -left-40 top-20"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mb-16">
+        Viele Unternehmen haben KI ausprobiert — und waren nicht überzeugt. Das ist nachvollziehbar. Doch die Technologie hat sich innerhalb kürzester Zeit grundlegend weiterentwickelt. Was vor wenigen Monaten noch Experiment war, ist heute ein produktionsreifes Werkzeug. Unternehmen in Ihrer Branche setzen es bereits ein. In unseren Workshops zeigen wir nicht nur, was möglich ist — wir erarbeiten mit Ihnen einen konkreten Plan, wie Sie KI in Ihrem Unternehmen einsetzen können.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Karte 1 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
+          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Production-ready, nicht Experiment</h3>
+          <p class="text-slate-400 leading-relaxed">
+            KI-Tools sind heute zuverlässig genug für den professionellen Einsatz. Die Frage ist nicht mehr ob, sondern wie schnell Sie einsteigen.
+          </p>
+        </div>
+
+        <!-- Karte 2 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
+          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Ihr Plan, nicht unserer</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Am Ende unseres Workshops haben Sie kein abstraktes Strategiepapier, sondern einen konkreten Fahrplan — zugeschnitten auf Ihre Prozesse, Ihre Branche, Ihr Team.
+          </p>
+        </div>
+
+        <!-- Karte 3 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
+          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.049.58.025 1.193-.14 1.743" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Aus der Praxis, nicht aus dem Hörsaal</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Wir beraten nicht aus der Theorie. Wir setzen KI selbst jeden Tag produktiv ein und zeigen Ihnen genau das, was funktioniert.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKTION 3: Wer wir sind -->
+  <section id="ueber-uns" class="relative py-24 md:py-32">
+    <div class="gradient-blob-sm right-0 top-40"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Wer wir sind</h2>
+      <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mb-16">
+        Wir sind keine Beratungsagentur. Wir sind zwei Software-Entwickler, die KI jeden Tag in ihrer eigenen Arbeit einsetzen — und die genau wissen, wo der echte Nutzen liegt und wo der Hype aufhört.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <!-- Tobias -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div class="flex items-center gap-5 mb-6">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-warm-orange to-warm-pink flex items-center justify-center text-2xl font-bold text-white shrink-0">
+              TW
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Tobias Weber</h3>
+              <p class="text-accent-400 text-sm font-medium">Fullstack Developer & IT-Consultant</p>
+            </div>
+          </div>
+          <ul class="space-y-3 text-slate-400">
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>8+ Jahre Erfahrung, B.Eng. Media Engineering (TH Nürnberg)</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>Zuletzt Senior Developer & Consultant bei msg for banking ag — Cloud-Architekturen und Microservices</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>KI-Schulungen für Entwicklerteams im Unternehmenskontext</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>Täglicher Einsatz von Claude, ChatGPT und GitHub Copilot</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Christian -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div class="flex items-center gap-5 mb-6">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-2xl font-bold text-white shrink-0">
+              CB
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Christian Braun</h3>
+              <p class="text-accent-400 text-sm font-medium">IT-Consultant & iOS-Entwickler</p>
+            </div>
+          </div>
+          <ul class="space-y-3 text-slate-400">
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>Erfahrung als Consultant in kleinen und großen Projekten, Schwerpunkt iOS</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>Intensiver Einsatz von Claude Code und Agentic Engineering seit Marktstart</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>Host eines Podcasts über IT- und KI-Themen</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>Unternehmen IBM, kurz Digital Solutions</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Persönlicher Block -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
+        <p class="text-lg text-slate-300 leading-relaxed italic">
+          „Das hier ist kein Agentur-Projekt. Wir kennen uns seit Jahren — beruflich und privat. Wir starten das aus Überzeugung, weil wir den Unterschied jeden Tag selbst erleben und glauben, dass deutlich mehr Unternehmen davon profitieren sollten."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKTION 4: Kontakt -->
+  <section id="kontakt" class="relative py-24 md:py-32">
+    <div class="gradient-blob -left-60 bottom-0"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 text-center">Sprechen wir darüber</h2>
+        <p class="text-lg text-slate-300 leading-relaxed text-center mb-12">
+          Lassen Sie uns herausfinden, wo in Ihrem Unternehmen das größte Potenzial liegt. Schreiben Sie uns — unverbindlich und unkompliziert. Wir melden uns innerhalb von 24 Stunden.
+        </p>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
+          <!-- E-Mail (Pflicht) -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-300 mb-2">E-Mail-Adresse *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              placeholder="ihre@email.de"
+            />
+          </div>
+
+          <!-- Name -->
+          <div>
+            <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              placeholder="Ihr Name"
+            />
+          </div>
+
+          <!-- Unternehmen -->
+          <div>
+            <label for="company" class="block text-sm font-medium text-slate-300 mb-2">Unternehmen</label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              placeholder="Firmenname"
+            />
+          </div>
+
+          <!-- Nachricht -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Nachricht</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors resize-none"
+              placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben…"
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="w-full bg-accent-500 hover:bg-accent-400 text-white font-semibold py-4 rounded-xl text-lg transition-colors cursor-pointer"
+          >
+            Jetzt Potenziale heben
+          </button>
+        </form>
+
+        <!-- Datenschutzhinweis -->
+        <p class="text-xs text-slate-500 text-center mt-6">
+          Mit dem Absenden stimmen Sie zu, dass wir Ihre Daten zur Beantwortung Ihrer Anfrage verwenden. Kein Spam, versprochen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-sm text-slate-500">&copy; 2026 Christian Braun & Tobias Weber</span>
+      <div class="flex gap-6">
+        <a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Impressum</a>
+        <a href="#" class="text-sm text-slate-500 hover:text-slate-300 transition-colors">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+</Layout>

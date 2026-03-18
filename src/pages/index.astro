@@ -2,19 +2,46 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Christian Braun & Tobias Weber — KI-Beratung">
+<Layout title="Braun & Weber — KI-Beratung für den Mittelstand">
 
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <span class="text-white font-bold text-lg tracking-tight">Braun & Weber KI-Beratung</span>
       <div class="hidden md:flex items-center gap-8">
-        <a href="#leistungen" class="text-sm text-slate-200 hover:text-white transition-colors">Leistungen</a>
+        <a href="#so-helfen-wir" class="text-sm text-slate-200 hover:text-white transition-colors">So helfen wir</a>
+        <a href="#beispiele" class="text-sm text-slate-200 hover:text-white transition-colors">Beispiele</a>
         <a href="#ueber-uns" class="text-sm text-slate-200 hover:text-white transition-colors">Über uns</a>
-        <a href="#kontakt" class="text-sm text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-2 rounded-lg transition-colors">Kontakt</a>
+        <a href="#kontakt" class="text-sm text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-2 rounded-lg transition-colors">Kostenloses Erstgespräch</a>
+      </div>
+      <!-- Mobile: Hamburger -->
+      <button id="menu-toggle" class="md:hidden text-white p-2 -mr-2" aria-label="Menü öffnen">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-navy-950/95 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
+        <a href="#so-helfen-wir" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">So helfen wir</a>
+        <a href="#beispiele" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Beispiele</a>
+        <a href="#ueber-uns" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Über uns</a>
+        <a href="#kontakt" class="text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-3 rounded-lg transition-colors text-center mobile-nav-link">Kostenloses Erstgespräch</a>
       </div>
     </div>
   </nav>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => menu.classList.add('hidden'));
+    });
+  </script>
 
   <!-- Background Blobs -->
   <div class="blob-container" aria-hidden="true">
@@ -27,44 +54,93 @@ import Layout from '../layouts/Layout.astro';
   <section class="relative min-h-screen flex items-center pt-20">
     <div class="max-w-6xl mx-auto px-6 py-20 md:py-32 relative z-10">
       <div class="max-w-3xl">
-        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-8">
-          KI ist der Hebel.<br />Ihr Team ist die Kraft.
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-10">
+          Die größte Revolution seit dem Internet.<br />
+          <span class="block min-h-[2.4em] sm:min-h-[2.4em]"><span class="text-transparent bg-clip-text bg-gradient-to-r from-warm-orange via-warm-pink to-accent-400"><span id="typewriter"></span></span><span class="inline-block w-[0.5em] h-[0.9em] bg-white/70 ml-0.5 animate-blink translate-y-[-0.03em]"></span></span>
         </h1>
+
+        <style>
+          @keyframes blink {
+            0%, 100% { opacity: 1; }
+            40%, 60% { opacity: 0; }
+          }
+          .animate-blink {
+            animation: blink 1s step-end infinite;
+          }
+        </style>
+
+        <script>
+          const first = 'Zeit, Ihr Team aufzustellen.';
+          const rest = [
+            'Wer jetzt einsteigt, erklärt es später den anderen.',
+            'KI ist kein Hype. Es ist ein Werkzeug.',
+            'Machen Sie Ihr Team zum Vorreiter.',
+          ];
+
+          // Shuffle rest randomly
+          for (let i = rest.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [rest[i], rest[j]] = [rest[j], rest[i]];
+          }
+
+          const phrases = [first, ...rest];
+          const el = document.getElementById('typewriter');
+          let phraseIndex = 0;
+          let charIndex = 0;
+          let deleting = false;
+
+          function tick() {
+            const current = phrases[phraseIndex];
+
+            if (!deleting) {
+              el.textContent = current.slice(0, charIndex + 1);
+              charIndex++;
+
+              if (charIndex === current.length) {
+                setTimeout(tick, 2500);
+                deleting = true;
+                return;
+              }
+              setTimeout(tick, 55 + Math.random() * 40);
+            } else {
+              el.textContent = current.slice(0, charIndex);
+              charIndex--;
+
+              if (charIndex < 0) {
+                deleting = false;
+                charIndex = 0;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(tick, 400);
+                return;
+              }
+              setTimeout(tick, 25);
+            }
+          }
+
+          tick();
+        </script>
         <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-2xl mb-10">
-          Als Software-Entwickler setzen wir KI seit Jahren täglich ein — und erleben, wie Aufgaben, die früher Stunden gebraucht haben, in einem Bruchteil der Zeit erledigt sind. Recherche, Texte, Analysen, Dokumentation, Code. Der Produktivitätssprung ist real, er ist messbar, und er ist heute für jedes Unternehmen zugänglich.
+          Code schreiben, Tickets formulieren, Dokumentation pflegen, Angebote erstellen, Kundenanfragen beantworten — Aufgaben, die heute Stunden kosten, erledigt KI in Minuten. Ob Entwicklerteam oder Fachabteilung: Wir zeigen Ihrem Team, wie. In einem Workshop, der auf Ihr Unternehmen zugeschnitten ist.
         </p>
         <a
           href="#kontakt"
           class="inline-block bg-accent-500 hover:bg-accent-400 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
         >
-          Jetzt Potenziale heben
+          Kostenloses Erstgespräch vereinbaren
         </a>
       </div>
     </div>
   </section>
 
-  <!-- SEKTION 2: Das Versprechen -->
-  <section id="leistungen" class="relative py-24 md:py-32">
+  <!-- SEKTION 2: So helfen wir -->
+  <section id="so-helfen-wir" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">So helfen wir Ihrem Unternehmen</h2>
       <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
-        Viele Unternehmen haben KI ausprobiert — und waren nicht überzeugt. Das ist nachvollziehbar. Doch die Technologie hat sich innerhalb kürzester Zeit grundlegend weiterentwickelt. Was vor wenigen Monaten noch Experiment war, ist heute ein produktionsreifes Werkzeug. Unternehmen in Ihrer Branche setzen es bereits ein. In unseren Workshops zeigen wir nicht nur, was möglich ist — wir erarbeiten mit Ihnen einen konkreten Plan, wie Sie KI in Ihrem Unternehmen einsetzen können.
+        Viele Unternehmen haben KI ausprobiert — und waren nicht überzeugt. Das ist nachvollziehbar. Aber die Technologie hat sich grundlegend weiterentwickelt. Was vor Monaten noch unzuverlässig war, ist heute ein Werkzeug, auf das sich Ihr Team verlassen kann. Wir zeigen Ihnen, wo es sich für Sie lohnt — und wo nicht.
       </p>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Karte 1 -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
-          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-3">Production-ready, nicht Experiment</h3>
-          <p class="text-slate-200 leading-relaxed">
-            KI-Tools sind heute zuverlässig genug für den professionellen Einsatz. Die Frage ist nicht mehr ob, sondern wie schnell Sie einsteigen.
-          </p>
-        </div>
-
-        <!-- Karte 2 -->
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
           <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -73,32 +149,139 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Ihr Plan, nicht unserer</h3>
           <p class="text-slate-200 leading-relaxed">
-            Am Ende unseres Workshops haben Sie kein abstraktes Strategiepapier, sondern einen konkreten Fahrplan — zugeschnitten auf Ihre Prozesse, Ihre Branche, Ihr Team.
+            Am Ende unseres Workshops haben Sie keinen abstrakten Strategiebericht, sondern einen konkreten Fahrplan — zugeschnitten auf Ihre Prozesse, Ihre Branche, Ihr Team.
           </p>
         </div>
 
-        <!-- Karte 3 -->
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
           <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.049.58.025 1.193-.14 1.743" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Aus der Praxis, nicht aus dem Hörsaal</h3>
+          <h3 class="text-xl font-bold text-white mb-3">Zuverlässig im Arbeitsalltag</h3>
           <p class="text-slate-200 leading-relaxed">
-            Wir beraten nicht aus der Theorie. Wir setzen KI selbst jeden Tag produktiv ein und zeigen Ihnen genau das, was funktioniert.
+            KI-Tools sind heute robust genug für den täglichen Einsatz in Ihrem Unternehmen. Kein Experiment — ein Werkzeug, das funktioniert.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
+          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.25-8.25-3.286ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Datenschutz inklusive</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Wir wissen, dass Ihre Daten sensibel sind. Wir zeigen Ihnen DSGVO-konforme Wege, KI sicher einzusetzen — ohne Ihre Daten an Dritte zu geben.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEKTION 3: Wer wir sind -->
+  <!-- SEKTION 3: Konkrete Beispiele -->
+  <section id="beispiele" class="relative py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Wo KI heute schon hilft</h2>
+      <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
+        Keine Theorie — das sind typische Szenarien, die wir in unseren Workshops mit Unternehmen erarbeiten.
+      </p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <p class="text-accent-400 text-sm font-semibold mb-2">Software-Entwicklung</p>
+          <h3 class="text-lg font-bold text-white mb-3">Entwickler, die mit KI schneller liefern</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Code schreiben, Reviews beschleunigen, Tests generieren, Bugs debuggen — mit Copilot, Claude Code und Cursor arbeiten Ihre Entwickler messbar produktiver. Am eigenen Code, nicht an Spielbeispielen.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <p class="text-accent-400 text-sm font-semibold mb-2">Product & Projektmanagement</p>
+          <h3 class="text-lg font-bold text-white mb-3">Bessere Tickets, schnellere Dokumentation</h3>
+          <p class="text-slate-200 leading-relaxed">
+            User Stories mit Akzeptanzkriterien in Minuten statt Stunden. Release Notes aus Git-History generieren. Sprint-Dokumentation automatisieren. Ihre POs und Scrum Master werden zum Multiplikator.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <p class="text-accent-400 text-sm font-semibold mb-2">Vertrieb & Angebotswesen</p>
+          <h3 class="text-lg font-bold text-white mb-3">Angebote in Minuten statt Stunden</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Ihr Vertrieb erstellt individuelle Angebote auf Basis vergangener Aufträge, Preislisten und Kundenanforderungen. KI reduziert den Aufwand pro Angebot deutlich.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <p class="text-accent-400 text-sm font-semibold mb-2">Kundenservice</p>
+          <h3 class="text-lg font-bold text-white mb-3">Anfragen schneller beantworten</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Wiederkehrende Kundenanfragen per E-Mail oder Ticket? KI erstellt Antwortentwürfe, die Ihr Team nur noch prüft und abschickt — Reaktionszeit halbiert.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <p class="text-accent-400 text-sm font-semibold mb-2">Buchhaltung & Verwaltung</p>
+          <h3 class="text-lg font-bold text-white mb-3">Belege und Dokumente automatisch verarbeiten</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Rechnungen erfassen, kategorisieren, zuordnen — Aufgaben, die Ihre Buchhaltung Stunden kosten. KI übernimmt die Vorarbeit, Ihr Team kontrolliert nur noch.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <p class="text-accent-400 text-sm font-semibold mb-2">Marketing & Kommunikation</p>
+          <h3 class="text-lg font-bold text-white mb-3">Content erstellen, der nach Ihnen klingt</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Newsletter, Social-Media-Posts, Produktbeschreibungen — KI erstellt Entwürfe in Ihrem Ton. Ihr Marketing-Team wird produktiver, ohne an Qualität zu verlieren.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKTION 4: Ablauf -->
+  <section class="relative py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">So läuft es ab</h2>
+      <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
+        Kein langes Drumherum. Drei Schritte, dann wissen Sie, wo KI Ihnen hilft.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div class="text-accent-400 text-4xl font-extrabold mb-4">1</div>
+          <h3 class="text-lg font-bold text-white mb-3">Erstgespräch (kostenlos)</h3>
+          <p class="text-slate-200 leading-relaxed">
+            30 Minuten, telefonisch oder per Video. Wir hören zu, stellen Fragen und finden heraus, wo bei Ihnen die größten Hebel liegen.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div class="text-accent-400 text-4xl font-extrabold mb-4">2</div>
+          <h3 class="text-lg font-bold text-white mb-3">Workshop vor Ort oder remote</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Ein halber bis ganzer Tag mit Ihrem Team. Für Entwickler: Hands-on am eigenen Code mit Copilot, Claude Code und Cursor. Für Product-Teams: KI-gestützte Tickets, Doku und Workflows. Für Fachabteilungen: KI im Arbeitsalltag.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div class="text-accent-400 text-4xl font-extrabold mb-4">3</div>
+          <h3 class="text-lg font-bold text-white mb-3">Ihr Fahrplan zum Mitnehmen</h3>
+          <p class="text-slate-200 leading-relaxed">
+            Sie bekommen einen konkreten Plan: Welche Tools, welche Prozesse, welche nächsten Schritte. Kein Berater-Deutsch, sondern Klartext.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKTION 5: Wer wir sind -->
   <section id="ueber-uns" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Wer wir sind</h2>
       <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
-        Wir sind keine Beratungsagentur. Wir sind zwei Software-Entwickler, die KI jeden Tag in ihrer eigenen Arbeit einsetzen — und die genau wissen, wo der echte Nutzen liegt und wo der Hype aufhört.
+        Wir sind selbst Entwickler und arbeiten täglich produktiv mit Claude Code, Copilot und Cursor. Wir verbinden diese Erfahrung mit praxisnaher Begleitung für Ihr Team — ob Engineering, Product oder Fachabteilung.
       </p>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
@@ -108,25 +291,21 @@ import Layout from '../layouts/Layout.astro';
             <img src={`${import.meta.env.BASE_URL}images/tobias-weber.jpg`} alt="Tobias Weber" class="w-20 h-20 rounded-full object-cover shrink-0" />
             <div>
               <h3 class="text-xl font-bold text-white">Tobias Weber</h3>
-              <p class="text-accent-400 text-sm font-medium">Fullstack Developer & IT-Consultant</p>
+              <p class="text-accent-400 text-sm font-medium">IT-Consultant & KI-Trainer</p>
             </div>
           </div>
           <ul class="space-y-3 text-slate-200">
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>8+ Jahre Erfahrung in der Softwareentwicklung</span>
+              <span>8+ Jahre Erfahrung in der IT-Beratung für Unternehmen</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>KI-Schulungen für Teams — von der Führungsebene bis zur Fachabteilung</span>
             </li>
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
               <span>msg for banking ag, KURZ Digital Solutions</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>KI-Schulungen für Entwicklerteams im Unternehmenskontext</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>KI-Enthusiast und -Evangelist — täglicher produktiver Einsatz seit der ersten Stunde</span>
             </li>
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
@@ -141,25 +320,21 @@ import Layout from '../layouts/Layout.astro';
             <img src={`${import.meta.env.BASE_URL}images/christian-braun.webp`} alt="Christian Braun" class="w-20 h-20 rounded-full object-cover shrink-0" />
             <div>
               <h3 class="text-xl font-bold text-white">Christian Braun</h3>
-              <p class="text-accent-400 text-sm font-medium">IT-Consultant & iOS-Entwickler</p>
+              <p class="text-accent-400 text-sm font-medium">IT-Consultant & KI-Trainer</p>
             </div>
           </div>
           <ul class="space-y-3 text-slate-200">
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>8+ Jahre Erfahrung in der Softwareentwicklung</span>
+              <span>8+ Jahre Erfahrung in der IT-Beratung für Unternehmen</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span>Host von <a href="https://open.spotify.com/show/2r1FGvYRkSYq4SmXyVKmnA" target="_blank" rel="noopener" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">Index out of bounds</a> — Podcast über Technologie und KI im Alltag</span>
             </li>
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
               <span>IBM, KURZ Digital Solutions</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>Host von <a href="https://open.spotify.com/show/2r1FGvYRkSYq4SmXyVKmnA" target="_blank" rel="noopener" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">Index out of bounds</a> — Podcast über IT und KI</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>KI-Enthusiast und -Evangelist — täglicher produktiver Einsatz seit der ersten Stunde</span>
             </li>
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
@@ -171,20 +346,20 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Persönlicher Block -->
       <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
-        <p class="text-lg text-slate-200 leading-relaxed italic">
-          „Das hier ist kein Agentur-Projekt. Wir kennen uns seit Jahren — beruflich und privat. Wir starten das aus Überzeugung, weil wir den Unterschied jeden Tag selbst erleben und glauben, dass deutlich mehr Unternehmen davon profitieren sollten."
+        <p class="text-lg text-slate-200 leading-relaxed">
+          Wir kennen uns seit Jahren — beruflich und privat. Wir schreiben selbst jeden Tag Code mit KI-Unterstützung und wissen, was funktioniert und was nicht. Diese Erfahrung bringen wir gezielt in unsere Workshops ein — für Entwicklerteams, Product Owner und Fachabteilungen gleichermaßen.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SEKTION 4: Kontakt -->
+  <!-- SEKTION 6: Kontakt -->
   <section id="kontakt" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <div class="max-w-2xl mx-auto">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 text-center">Sprechen wir darüber</h2>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 text-center">Kostenloses Erstgespräch</h2>
         <p class="text-lg text-slate-200 leading-relaxed text-center mb-12">
-          Lassen Sie uns herausfinden, wo in Ihrem Unternehmen das größte Potenzial liegt. Schreiben Sie uns — unverbindlich und unkompliziert. Wir melden uns innerhalb von 24 Stunden.
+          30 Minuten, unverbindlich, ohne Verkaufsdruck. Wir hören zu und sagen Ihnen ehrlich, ob und wo KI Ihnen helfen kann. Wir melden uns innerhalb von 24 Stunden.
         </p>
 
         <form id="contact-form" class="space-y-6">
@@ -215,23 +390,42 @@ import Layout from '../layouts/Layout.astro';
 
           <!-- Interessen -->
           <fieldset>
-            <legend class="block text-sm font-medium text-slate-200 mb-3">Ich bin interessiert an</legend>
+            <legend class="block text-sm font-medium text-slate-200 mb-3">Was interessiert Sie?</legend>
             <div class="grid sm:grid-cols-2 gap-3">
-              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <input type="checkbox" name="interest" value="KI-Workshop" class="accent-accent-500 w-4 h-4 shrink-0" />
-                <span class="text-sm text-slate-200">KI-Workshop für mein Team</span>
+              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="interest" value="KI-Workshop" class="accent-accent-500 w-4 h-4 shrink-0" />
+                  <span class="text-sm text-white font-medium">KI-Workshop</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1 ml-7">Praktisches Training für Ihr Team</p>
               </label>
-              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <input type="checkbox" name="interest" value="Strategieberatung" class="accent-accent-500 w-4 h-4 shrink-0" />
-                <span class="text-sm text-slate-200">Strategieberatung</span>
+              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="interest" value="Strategieberatung" class="accent-accent-500 w-4 h-4 shrink-0" />
+                  <span class="text-sm text-white font-medium">Strategieberatung</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1 ml-7">Wo lohnt sich KI in Ihren Prozessen?</p>
               </label>
-              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <input type="checkbox" name="interest" value="Machbarkeitsanalyse" class="accent-accent-500 w-4 h-4 shrink-0" />
-                <span class="text-sm text-slate-200">Machbarkeitsanalyse</span>
+              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="interest" value="Machbarkeitsanalyse" class="accent-accent-500 w-4 h-4 shrink-0" />
+                  <span class="text-sm text-white font-medium">Machbarkeitsanalyse</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1 ml-7">Einen konkreten Anwendungsfall prüfen lassen</p>
               </label>
-              <label class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <input type="checkbox" name="interest" value="Individuelle Lösung" class="accent-accent-500 w-4 h-4 shrink-0" />
-                <span class="text-sm text-slate-200">Individuelle Lösung</span>
+              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="interest" value="Developer Enablement" class="accent-accent-500 w-4 h-4 shrink-0" />
+                  <span class="text-sm text-white font-medium">Developer Enablement</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1 ml-7">Entwicklerteam mit KI-Tools produktiver machen</p>
+              </label>
+              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" name="interest" value="Individuelle Lösung" class="accent-accent-500 w-4 h-4 shrink-0" />
+                  <span class="text-sm text-white font-medium">Individuelle Lösung</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1 ml-7">Ein KI-Tool für Ihren Bedarf entwickeln</p>
               </label>
             </div>
           </fieldset>
@@ -244,7 +438,7 @@ import Layout from '../layouts/Layout.astro';
               name="message"
               rows="4"
               class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-300 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors resize-none"
-              placeholder="Erzählen Sie uns kurz von Ihrem Vorhaben…"
+              placeholder="Erzählen Sie uns kurz, was Sie beschäftigt…"
             ></textarea>
           </div>
 
@@ -253,9 +447,20 @@ import Layout from '../layouts/Layout.astro';
             type="submit"
             class="w-full bg-accent-500 hover:bg-accent-400 text-white font-semibold py-4 rounded-xl text-lg transition-colors cursor-pointer"
           >
-            Jetzt Potenziale heben
+            Kostenloses Erstgespräch vereinbaren
           </button>
         </form>
+
+        <!-- Secondary: Anrufen -->
+        <div class="mt-4">
+          <a
+            href="tel:+4915256719943"
+            class="flex items-center justify-center gap-3 w-full border border-white/20 hover:border-white/40 text-slate-200 hover:text-white font-semibold py-4 rounded-xl text-lg transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>oder rufen Sie an: 0152 567 199 43</span>
+          </a>
+        </div>
 
         <script>
           document.getElementById('contact-form').addEventListener('submit', function(e) {
@@ -273,7 +478,7 @@ import Layout from '../layouts/Layout.astro';
             if (message) lines.push('\n' + message);
 
             const body = encodeURIComponent(lines.join('\n'));
-            const subject = encodeURIComponent('KI-Beratung – Anfrage' + (company ? ' (' + company + ')' : ''));
+            const subject = encodeURIComponent('KI-Beratung – Erstgespräch' + (company ? ' (' + company + ')' : ''));
             const to = 'hello@tobi-weber.com,christian.braun@theempathicdev.de';
 
             window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
@@ -290,33 +495,25 @@ import Layout from '../layouts/Layout.astro';
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // On desktop: stop CSS animations, JS takes over fully
-    // On mobile: keep CSS animations, no JS movement
     if (!isTouch) {
       blobs.forEach(blob => blob.style.animation = 'none');
     }
 
-    // Different speeds, drift patterns, and mouse weights per blob
-    // startX/Y are offsets from their CSS top/left positions
     const config = [
       { startX: 0, startY: 0, speed: 0.025, driftRadius: 120, driftSpeed: 0.0008, mouseWeight: 0.35 },
       { startX: 0, startY: 0, speed: 0.015, driftRadius: 180, driftSpeed: 0.0005, mouseWeight: 0.2  },
       { startX: 0, startY: 0, speed: 0.01,  driftRadius: 150, driftSpeed: 0.0006, mouseWeight: 0.15 },
     ];
 
-    // Read actual CSS positions for mouse-relative calculations
     const blobRects = Array.from(blobs).map(b => {
       const r = b.getBoundingClientRect();
       return { cx: r.left + r.width / 2, cy: r.top + r.height / 2 };
     });
 
     const state = config.map(c => ({
-      x: c.startX,
-      y: c.startY,
-      targetX: c.startX,
-      targetY: c.startY,
-      homeX: c.startX,
-      homeY: c.startY,
+      x: c.startX, y: c.startY,
+      targetX: c.startX, targetY: c.startY,
+      homeX: c.startX, homeY: c.startY,
     }));
 
     let mouseX = vw / 2;
@@ -327,8 +524,6 @@ import Layout from '../layouts/Layout.astro';
       time++;
       state.forEach((s, i) => {
         const c = config[i];
-
-        // Autonomous drift: each blob orbits its own unique path
         const phase = i * 2.1;
         const driftX = Math.sin(time * c.driftSpeed + phase) * c.driftRadius
                      + Math.cos(time * c.driftSpeed * 0.7 + phase * 1.3) * c.driftRadius * 0.5;
@@ -336,17 +531,13 @@ import Layout from '../layouts/Layout.astro';
                      + Math.sin(time * c.driftSpeed * 0.6 + phase * 1.7) * c.driftRadius * 0.4;
 
         if (isTouch) {
-          // Mobile: only autonomous drift, no interaction
           s.targetX = driftX;
           s.targetY = driftY;
         } else {
-          // Desktop: blend autonomous drift with mouse attraction
-          const autoX = driftX;
-          const autoY = driftY;
           const pullX = mouseX - blobRects[i].cx;
           const pullY = mouseY - blobRects[i].cy;
-          s.targetX = autoX + pullX * c.mouseWeight;
-          s.targetY = autoY + pullY * c.mouseWeight;
+          s.targetX = driftX + pullX * c.mouseWeight;
+          s.targetY = driftY + pullY * c.mouseWeight;
         }
 
         s.x += (s.targetX - s.x) * c.speed;

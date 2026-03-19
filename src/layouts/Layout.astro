@@ -8,22 +8,101 @@ import '../styles/global.css'
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description = "KI-Beratung für Unternehmen — Christian Braun & Tobias Weber" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description = "KI-Beratung für Unternehmen — Christian Braun & Tobias Weber", ogImage, noindex = false } = Astro.props;
 ---
 
 <html lang="de">
   <head>
+    <script is:inline>
+      (function() {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#06061a" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" id="meta-theme" content="#eae8e1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151530" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Braun & Weber KI-Beratung" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Braun & Weber KI-Beratung",
+      "url": "https://ki-workshop-unternehmen.de",
+      "description": "KI-Workshops für Entwicklerteams — hands-on, an Ihrem Code, mit Coding Agents.",
+      "address": [
+        { "@type": "PostalAddress", "addressLocality": "Fürth", "addressRegion": "Bayern", "addressCountry": "DE" }
+      ],
+      "founder": [
+        { "@type": "Person", "name": "Tobias Weber", "jobTitle": "IT-Consultant & KI-Trainer" },
+        { "@type": "Person", "name": "Christian Braun", "jobTitle": "IT-Consultant & KI-Trainer" }
+      ],
+      "knowsAbout": ["Künstliche Intelligenz", "Coding Agents", "Software-Entwicklung", "KI-Workshops"],
+      "areaServed": { "@type": "Country", "name": "DE" },
+      "telephone": "+4915256719943",
+      "email": "hello@tobi-weber.com"
+    })} />
+
     <title>{title}</title>
   </head>
   <body class="min-h-screen overflow-x-hidden">
     <slot />
+
+    <script is:inline>
+      // Theme toggle
+      (function() {
+        var toggle = document.getElementById('theme-toggle');
+        if (!toggle) return;
+
+        function update() {
+          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          var sun = document.getElementById('icon-sun');
+          var moon = document.getElementById('icon-moon');
+          if (sun) sun.style.display = isDark ? 'block' : 'none';
+          if (moon) moon.style.display = isDark ? 'none' : 'block';
+        }
+
+        toggle.addEventListener('click', function() {
+          var cur = document.documentElement.getAttribute('data-theme');
+          var next = cur === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          var metas = document.querySelectorAll('meta[name="theme-color"]');
+          metas.forEach(function(m) { m.content = next === 'dark' ? '#151530' : '#eae8e1'; });
+          update();
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+          if (!localStorage.getItem('theme')) {
+            var theme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            update();
+          }
+        });
+
+        update();
+      })();
+    </script>
   </body>
 </html>

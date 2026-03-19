@@ -2,32 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Braun & Weber — KI-Beratung für Entwicklerteams">
+<Layout title="Braun & Weber — KI-Beratung für Entwicklerteams" description="KI-Workshops für Entwicklerteams: Hands-on an Ihrem Code mit Coding Agents. Kein Vortrag, echte Ergebnisse. Kostenloses Erstgespräch.">
 
   <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-surface-nav backdrop-blur-md border-b border-divider">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <span class="text-white font-bold text-lg tracking-tight">Braun & Weber KI-Beratung</span>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#workshop" class="text-sm text-slate-200 hover:text-white transition-colors">Workshop</a>
-        <a href="#fuer-wen" class="text-sm text-slate-200 hover:text-white transition-colors">Für wen</a>
-        <a href="#ueber-uns" class="text-sm text-slate-200 hover:text-white transition-colors">Über uns</a>
-        <a href="#kontakt" class="text-sm text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-2 rounded-lg transition-colors">Kostenloses Erstgespräch</a>
+      <span class="text-heading font-bold text-lg tracking-tight">Braun & Weber KI-Beratung</span>
+      <div class="flex items-center gap-2">
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#workshop" class="text-sm text-body hover:text-heading transition-colors">Workshop</a>
+          <a href="#fuer-wen" class="text-sm text-body hover:text-heading transition-colors">Für wen</a>
+          <a href="#ueber-uns" class="text-sm text-body hover:text-heading transition-colors">Über uns</a>
+          <a href="#kontakt" class="text-sm font-semibold cta-gradient px-5 py-2 rounded-lg">Kostenloses Erstgespräch</a>
+        </div>
+        <button id="theme-toggle" class="text-body hover:text-heading p-2 rounded-lg hover:bg-card transition-colors" aria-label="Farbschema wechseln">
+          <svg id="icon-sun" class="w-5 h-5" style="display:none" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+          <svg id="icon-moon" class="w-5 h-5" style="display:none" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+          </svg>
+        </button>
+        <!-- Mobile: Hamburger -->
+        <button id="menu-toggle" class="md:hidden text-heading p-2 -mr-2" aria-label="Menü öffnen">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
       </div>
-      <!-- Mobile: Hamburger -->
-      <button id="menu-toggle" class="md:hidden text-white p-2 -mr-2" aria-label="Menü öffnen">
-        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-      </button>
     </div>
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-navy-950/95 backdrop-blur-md">
+    <div id="mobile-menu" class="hidden md:hidden border-t border-divider bg-surface-nav backdrop-blur-md">
       <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
-        <a href="#workshop" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Workshop</a>
-        <a href="#fuer-wen" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Für wen</a>
-        <a href="#ueber-uns" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Über uns</a>
-        <a href="#kontakt" class="text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-3 rounded-lg transition-colors text-center mobile-nav-link">Kostenloses Erstgespräch</a>
+        <a href="#workshop" class="text-body hover:text-heading transition-colors mobile-nav-link">Workshop</a>
+        <a href="#fuer-wen" class="text-body hover:text-heading transition-colors mobile-nav-link">Für wen</a>
+        <a href="#ueber-uns" class="text-body hover:text-heading transition-colors mobile-nav-link">Über uns</a>
+        <a href="#kontakt" class="font-semibold cta-gradient px-5 py-3 rounded-lg text-center mobile-nav-link">Kostenloses Erstgespräch</a>
       </div>
     </div>
   </nav>
@@ -54,23 +64,13 @@ import Layout from '../layouts/Layout.astro';
   <section class="relative min-h-screen flex items-center pt-20">
     <div class="max-w-6xl mx-auto px-6 py-20 md:py-32 relative z-10">
       <div class="max-w-3xl">
-        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-10">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-heading leading-tight tracking-tight mb-10">
           Die größte Revolution seit dem Internet.<br />
           <span class="block relative">
             <span class="invisible grid" aria-hidden="true" id="typewriter-sizer"></span>
-            <span class="absolute inset-0"><span class="text-transparent bg-clip-text bg-gradient-to-r from-warm-orange via-warm-pink to-accent-400"><span id="typewriter"></span></span><span class="inline-block w-[0.5em] h-[0.9em] bg-white/70 ml-0.5 animate-blink translate-y-[-0.03em]"></span></span>
+            <span class="absolute inset-0"><span class="gradient-text"><span id="typewriter"></span></span><span class="cursor-blink"></span></span>
           </span>
         </h1>
-
-        <style>
-          @keyframes blink {
-            0%, 100% { opacity: 1; }
-            40%, 60% { opacity: 0; }
-          }
-          .animate-blink {
-            animation: blink 1s step-end infinite;
-          }
-        </style>
 
         <script>
           const first = 'Zeit, Ihr Team aufzustellen.';
@@ -131,12 +131,12 @@ import Layout from '../layouts/Layout.astro';
 
           tick();
         </script>
-        <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-2xl mb-10">
+        <p class="text-lg md:text-xl text-body leading-relaxed max-w-2xl mb-10">
           Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
         </p>
         <a
           href="#kontakt"
-          class="inline-block bg-accent-500 hover:bg-accent-400 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
+          class="inline-block cta-gradient font-semibold px-8 py-4 rounded-lg text-lg"
         >
           Kostenloses Erstgespräch vereinbaren
         </a>
@@ -147,44 +147,44 @@ import Layout from '../layouts/Layout.astro';
   <!-- SEKTION 2: Das Problem -->
   <section class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Das kennen Sie: Ihr Team nutzt KI — aber nicht richtig.</h2>
-      <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-heading mb-6">Das kennen Sie: Ihr Team nutzt KI — aber nicht richtig.</h2>
+      <p class="text-lg md:text-xl text-body leading-relaxed max-w-3xl mb-16">
         Zwei Entwickler schwören auf Copilot. Einer hat Coding Agents entdeckt und ist begeistert. Drei haben es ausprobiert und wieder gelassen. Und einer hält KI-generierten Code für gefährlich. Das Ergebnis: Kein einheitlicher Stand, keine Best Practices, keine messbare Verbesserung. Ihr Team verschenkt Potenzial — nicht weil die Tools fehlen, sondern weil niemand den Rollout strukturiert hat.
       </p>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
-          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <div class="bg-card border border-divider rounded-2xl p-8 hover:bg-card-hover transition-colors">
+          <div class="w-12 h-12 bg-accent-soft rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Einheitlicher Stand im Team</h3>
-          <p class="text-slate-200 leading-relaxed">
+          <h3 class="text-xl font-bold text-heading mb-3">Einheitlicher Stand im Team</h3>
+          <p class="text-body leading-relaxed">
             Nicht nur die Early Adopter nutzen KI — das ganze Team. Mit klaren Workflows, abgestimmten Tools und gemeinsamen Spielregeln. Schluss mit "jeder macht irgendwas."
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
-          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <div class="bg-card border border-divider rounded-2xl p-8 hover:bg-card-hover transition-colors">
+          <div class="w-12 h-12 bg-accent-soft rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Messbar schnellere Ergebnisse</h3>
-          <p class="text-slate-200 leading-relaxed">
+          <h3 class="text-xl font-bold text-heading mb-3">Messbar schnellere Ergebnisse</h3>
+          <p class="text-body leading-relaxed">
             Code Reviews in Minuten statt Stunden. Tests, die sich selbst schreiben. Dokumentation, die nicht liegen bleibt. Ihre Entwickler arbeiten mit KI so routiniert wie mit Git.
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
-          <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <div class="bg-card border border-divider rounded-2xl p-8 hover:bg-card-hover transition-colors">
+          <div class="w-12 h-12 bg-accent-soft rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Ein Fahrplan, der über den Workshop hinausgeht</h3>
-          <p class="text-slate-200 leading-relaxed">
+          <h3 class="text-xl font-bold text-heading mb-3">Ein Fahrplan, der über den Workshop hinausgeht</h3>
+          <p class="text-body leading-relaxed">
             Sie bekommen keinen abstrakten Strategiebericht, sondern einen konkreten Plan: Welche Tools für Ihr Team, welche Workflows für Ihre Codebasis, welche nächsten Schritte. Inklusive Empfehlung, was Sie nicht brauchen.
           </p>
         </div>
@@ -195,48 +195,48 @@ import Layout from '../layouts/Layout.astro';
   <!-- SEKTION 3: Wie der Workshop funktioniert -->
   <section id="workshop" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Erst verstehen, dann anwenden — an Ihrem Code.</h2>
-      <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-heading mb-6">Erst verstehen, dann anwenden — an Ihrem Code.</h2>
+      <p class="text-lg md:text-xl text-body leading-relaxed max-w-3xl mb-16">
         Wir starten nicht mit einem Tool, sondern mit dem Konzept: Was sind Coding Agents? Wie verändern sie die Art, wie Software entsteht? Welche Tools gibt es — von Cursor über Claude Code bis Codex — und welches passt zu Ihrem Team und Ihrem Stack? Dann wird's konkret.
       </p>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
-          <h3 class="text-lg font-bold text-white mb-3">Features entwickeln</h3>
-          <p class="text-slate-200 leading-relaxed">
+        <div class="bg-card border border-divider rounded-2xl p-8">
+          <p class="text-accent text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-heading mb-3">Features entwickeln</h3>
+          <p class="text-body leading-relaxed">
             Vom Ticket zur Implementierung — wie ein Agent dabei unterstützt, ohne dass Ihr Team die Kontrolle abgibt.
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
-          <h3 class="text-lg font-bold text-white mb-3">Bugs fixen</h3>
-          <p class="text-slate-200 leading-relaxed">
+        <div class="bg-card border border-divider rounded-2xl p-8">
+          <p class="text-accent text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-heading mb-3">Bugs fixen</h3>
+          <p class="text-body leading-relaxed">
             Fehler eingrenzen, Ursache verstehen, Lösung vorschlagen lassen — und wissen, wann man dem Vorschlag traut und wann nicht.
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
-          <h3 class="text-lg font-bold text-white mb-3">Code Reviews beschleunigen</h3>
-          <p class="text-slate-200 leading-relaxed">
+        <div class="bg-card border border-divider rounded-2xl p-8">
+          <p class="text-accent text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-heading mb-3">Code Reviews beschleunigen</h3>
+          <p class="text-body leading-relaxed">
             KI-gestützte Reviews, die echte Probleme finden — nicht nur Formatierung. Wie Ihr Team schneller reviewed, ohne Qualität zu verlieren.
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
-          <h3 class="text-lg font-bold text-white mb-3">Erst an Beispielen, dann an Ihrem Code</h3>
-          <p class="text-slate-200 leading-relaxed">
+        <div class="bg-card border border-divider rounded-2xl p-8">
+          <p class="text-accent text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-heading mb-3">Erst an Beispielen, dann an Ihrem Code</h3>
+          <p class="text-body leading-relaxed">
             Wir starten mit klaren, nachvollziehbaren Szenarien. Wenn das Konzept sitzt, wechseln wir auf Ihre Codebasis — mit echten Aufgaben aus Ihrem Backlog.
           </p>
         </div>
       </div>
 
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
-        <p class="text-lg text-slate-200 leading-relaxed">
-          <span class="text-white font-semibold">Der Inhalt richtet sich nach Ihrem Team.</span> Steht Ihr Team am Anfang, starten wir bei den Grundlagen: Was kann ein Coding Agent, wo sind die Grenzen, wie promptet man richtig. Hat Ihr Team schon Erfahrung, gehen wir in die Tiefe: Vom Ticket über den Agent, der den Code schreibt, den PR erstellt, den Review durchläuft — bis zur Freigabe durch einen Menschen.
+      <div class="bg-card border border-divider rounded-2xl p-8 md:p-10">
+        <p class="text-lg text-body leading-relaxed">
+          <span class="text-heading font-semibold">Der Inhalt richtet sich nach Ihrem Team.</span> Steht Ihr Team am Anfang, starten wir bei den Grundlagen: Was kann ein Coding Agent, wo sind die Grenzen, wie promptet man richtig. Hat Ihr Team schon Erfahrung, gehen wir in die Tiefe: Vom Ticket über den Agent, der den Code schreibt, den PR erstellt, den Review durchläuft — bis zur Freigabe durch einen Menschen.
         </p>
       </div>
     </div>
@@ -245,35 +245,35 @@ import Layout from '../layouts/Layout.astro';
   <!-- SEKTION 4: Für wen -->
   <section id="fuer-wen" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Das ist für Sie, wenn...</h2>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-heading mb-6">Das ist für Sie, wenn...</h2>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
-          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
-          <p class="text-slate-200 leading-relaxed">...Ihr Entwicklerteam zwischen 5 und 50 Leuten liegt</p>
+        <div class="bg-card border border-divider rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-body leading-relaxed">...Ihr Entwicklerteam zwischen 5 und 50 Leuten liegt</p>
         </div>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
-          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
-          <p class="text-slate-200 leading-relaxed">...einige schon KI nutzen, aber nicht alle — und nicht systematisch</p>
+        <div class="bg-card border border-divider rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-body leading-relaxed">...einige schon KI nutzen, aber nicht alle — und nicht systematisch</p>
         </div>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
-          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
-          <p class="text-slate-200 leading-relaxed">...Sie wissen, dass KI-Tools produktiver machen, aber der Rollout hakt</p>
+        <div class="bg-card border border-divider rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-body leading-relaxed">...Sie wissen, dass KI-Tools produktiver machen, aber der Rollout hakt</p>
         </div>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
-          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
-          <p class="text-slate-200 leading-relaxed">...Ihre Entwickler am eigenen Code lernen sollen, nicht an Folien</p>
+        <div class="bg-card border border-divider rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-body leading-relaxed">...Ihre Entwickler am eigenen Code lernen sollen, nicht an Folien</p>
         </div>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
-          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
-          <p class="text-slate-200 leading-relaxed">...Sie einen Plan wollen, nicht nur eine Inspiration</p>
+        <div class="bg-card border border-divider rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-body leading-relaxed">...Sie einen Plan wollen, nicht nur eine Inspiration</p>
         </div>
       </div>
 
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
-        <h3 class="text-lg font-bold text-white mb-3">Kein Entwicklerteam, aber trotzdem neugierig?</h3>
-        <p class="text-slate-200 leading-relaxed">
-          KI kann auch in Vertrieb, Marketing und Sachbearbeitung enorm helfen. <a href="#kontakt" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">Schreiben Sie uns</a> — wir sagen Ihnen ehrlich, ob und wie wir Ihnen helfen können.
+      <div class="bg-card border border-divider rounded-2xl p-8 md:p-10">
+        <h3 class="text-lg font-bold text-heading mb-3">Kein Entwicklerteam, aber trotzdem neugierig?</h3>
+        <p class="text-body leading-relaxed">
+          KI kann auch in Vertrieb, Marketing und Sachbearbeitung enorm helfen. <a href="#kontakt" class="text-accent hover:text-accent-hover underline underline-offset-2">Schreiben Sie uns</a> — wir sagen Ihnen ehrlich, ob und wie wir Ihnen helfen können.
         </p>
       </div>
     </div>
@@ -282,29 +282,29 @@ import Layout from '../layouts/Layout.astro';
   <!-- SEKTION 5: Ablauf -->
   <section class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Drei Schritte. Kein Drumherum.</h2>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-heading mb-6">Drei Schritte. Kein Drumherum.</h2>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <div class="text-accent-400 text-4xl font-extrabold mb-4">1</div>
-          <h3 class="text-lg font-bold text-white mb-3">Erstgespräch (kostenlos)</h3>
-          <p class="text-slate-200 leading-relaxed">
+        <div class="bg-card border border-divider rounded-2xl p-8">
+          <div class="text-accent text-4xl font-extrabold mb-4">1</div>
+          <h3 class="text-lg font-bold text-heading mb-3">Erstgespräch (kostenlos)</h3>
+          <p class="text-body leading-relaxed">
             30 Minuten, per Video oder Telefon. Wir lernen Ihr Team kennen: Wie groß, welcher Stack, welche Tools schon im Einsatz, wo es hakt. Danach wissen Sie, ob ein Workshop für Sie sinnvoll ist — und wir sagen Ihnen ehrlich, wenn nicht.
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <div class="text-accent-400 text-4xl font-extrabold mb-4">2</div>
-          <h3 class="text-lg font-bold text-white mb-3">Workshop — vor Ort oder remote</h3>
-          <p class="text-slate-200 leading-relaxed">
+        <div class="bg-card border border-divider rounded-2xl p-8">
+          <div class="text-accent text-4xl font-extrabold mb-4">2</div>
+          <h3 class="text-lg font-bold text-heading mb-3">Workshop — vor Ort oder remote</h3>
+          <p class="text-body leading-relaxed">
             Ein halber bis ganzer Tag mit Ihrem Entwicklerteam. Hands-on an Ihrem Code, nicht an unserem. Wir passen den Inhalt an Ihren Stack, Ihr Tooling und Ihr Erfahrungslevel an. Auch die Skeptiker kommen mit.
           </p>
         </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <div class="text-accent-400 text-4xl font-extrabold mb-4">3</div>
-          <h3 class="text-lg font-bold text-white mb-3">Ihr Fahrplan</h3>
-          <p class="text-slate-200 leading-relaxed">
+        <div class="bg-card border border-divider rounded-2xl p-8">
+          <div class="text-accent text-4xl font-extrabold mb-4">3</div>
+          <h3 class="text-lg font-bold text-heading mb-3">Ihr Fahrplan</h3>
+          <p class="text-body leading-relaxed">
             Nach dem Workshop bekommen Sie ein Dokument mit konkreten Empfehlungen: Welche Tools für Ihr Team, wie der Rollout aussehen sollte, was die nächsten Schritte sind, und was Sie sich sparen können. Kein 80-Seiten-PDF — Klartext auf den Punkt.
           </p>
         </div>
@@ -315,70 +315,70 @@ import Layout from '../layouts/Layout.astro';
   <!-- SEKTION 6: Wer wir sind -->
   <section id="ueber-uns" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Zwei Entwickler, die jeden Tag mit KI-Tools arbeiten.</h2>
-      <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-heading mb-6">Zwei Entwickler, die jeden Tag mit KI-Tools arbeiten.</h2>
+      <p class="text-lg md:text-xl text-body leading-relaxed max-w-3xl mb-16">
         Keine Unternehmensberater, die KI aus der Ferne erklären. Wir schreiben selbst jeden Tag Code mit Coding Agents. Wir wissen, was funktioniert — und wo man aufpassen muss. Diese Erfahrung bringen wir in den Workshop mit.
       </p>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <!-- Tobias -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+        <div class="bg-card border border-divider rounded-2xl p-8">
           <div class="flex items-center gap-5 mb-6">
             <img src={`${import.meta.env.BASE_URL}images/tobias-weber.jpg`} alt="Tobias Weber" class="w-20 h-20 rounded-full object-cover shrink-0" />
             <div>
-              <h3 class="text-xl font-bold text-white">Tobias Weber</h3>
-              <p class="text-accent-400 text-sm font-medium">IT-Consultant & KI-Trainer</p>
+              <h3 class="text-xl font-bold text-heading">Tobias Weber</h3>
+              <p class="text-accent text-sm font-medium">IT-Consultant & KI-Trainer</p>
             </div>
           </div>
-          <ul class="space-y-3 text-slate-200">
+          <ul class="space-y-3 text-body">
             <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span class="text-accent mt-1 shrink-0">—</span>
               <span>8+ Jahre IT-Beratung — unter anderem in regulierten Branchen</span>
             </li>
             <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span class="text-accent mt-1 shrink-0">—</span>
               <span>KI-Schulungen für Teams — von der Führungsebene bis zur Fachabteilung</span>
             </li>
             <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span class="text-accent mt-1 shrink-0">—</span>
               <span>msg for banking ag, KURZ Digital Solutions</span>
             </li>
             <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>Co-Founder <a href="https://picaboo-app.com" target="_blank" rel="noopener" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">PICABOO</a></span>
+              <span class="text-accent mt-1 shrink-0">—</span>
+              <span>Co-Founder <a href="https://picaboo-app.com" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover underline underline-offset-2">PICABOO</a></span>
             </li>
           </ul>
         </div>
 
         <!-- Christian -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+        <div class="bg-card border border-divider rounded-2xl p-8">
           <div class="flex items-center gap-5 mb-6">
             <img src={`${import.meta.env.BASE_URL}images/christian-braun.webp`} alt="Christian Braun" class="w-20 h-20 rounded-full object-cover shrink-0" />
             <div>
-              <h3 class="text-xl font-bold text-white">Christian Braun</h3>
-              <p class="text-accent-400 text-sm font-medium">IT-Consultant & KI-Trainer</p>
+              <h3 class="text-xl font-bold text-heading">Christian Braun</h3>
+              <p class="text-accent text-sm font-medium">IT-Consultant & KI-Trainer</p>
             </div>
           </div>
-          <ul class="space-y-3 text-slate-200">
+          <ul class="space-y-3 text-body">
             <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
+              <span class="text-accent mt-1 shrink-0">—</span>
               <span>8+ Jahre IT-Beratung — IBM, KURZ Digital Solutions</span>
             </li>
             <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>Host von <a href="https://open.spotify.com/show/2r1FGvYRkSYq4SmXyVKmnA" target="_blank" rel="noopener" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">Index out of bounds</a> — Podcast über Technologie und KI im Entwickleralltag</span>
+              <span class="text-accent mt-1 shrink-0">—</span>
+              <span>Host von <a href="https://open.spotify.com/show/2r1FGvYRkSYq4SmXyVKmnA" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover underline underline-offset-2">Index out of bounds</a> — Podcast über Technologie und KI im Entwickleralltag</span>
             </li>
             <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>Co-Founder <a href="https://picaboo-app.com" target="_blank" rel="noopener" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">PICABOO</a></span>
+              <span class="text-accent mt-1 shrink-0">—</span>
+              <span>Co-Founder <a href="https://picaboo-app.com" target="_blank" rel="noopener" class="text-accent hover:text-accent-hover underline underline-offset-2">PICABOO</a></span>
             </li>
           </ul>
         </div>
       </div>
 
       <!-- Persönlicher Block -->
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
-        <p class="text-lg text-slate-200 leading-relaxed">
+      <div class="bg-card border border-divider rounded-2xl p-8 md:p-10">
+        <p class="text-lg text-body leading-relaxed">
           Wir kennen uns seit Jahren — beruflich und privat. Wir schreiben selbst jeden Tag Code mit Coding Agents und erleben, wie sich Softwareentwicklung gerade grundlegend verändert. Das hier ist nicht nur unser Geschäft — es ist das Thema, über das wir abends beim Bier reden. Wir machen das, weil wir überzeugt sind, dass jedes Entwicklerteam davon profitieren kann. Und weil es uns Spaß macht, dieses Wissen weiterzugeben.
         </p>
       </div>
@@ -389,57 +389,57 @@ import Layout from '../layouts/Layout.astro';
   <section id="kontakt" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <div class="max-w-2xl mx-auto">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 text-center">Erstgespräch vereinbaren — kostenlos, 30 Minuten.</h2>
-        <p class="text-lg text-slate-200 leading-relaxed text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-heading mb-6 text-center">Erstgespräch vereinbaren — kostenlos, 30 Minuten.</h2>
+        <p class="text-lg text-body leading-relaxed text-center mb-12">
           Kein Verkaufsgespräch. Wir hören zu, stellen Fragen, und sagen Ihnen ehrlich, ob ein Workshop für Ihr Team sinnvoll ist. Antwort innerhalb von 24 Stunden.
         </p>
 
         <form id="contact-form" class="space-y-6">
           <!-- E-Mail (Pflicht) -->
           <div>
-            <label for="email" class="block text-sm font-medium text-slate-200 mb-2">E-Mail-Adresse *</label>
+            <label for="email" class="block text-sm font-medium text-body mb-2">E-Mail-Adresse *</label>
             <input
               type="email"
               id="email"
               name="email"
               required
-              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-300 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              class="w-full bg-card border border-divider rounded-xl px-5 py-3.5 text-heading placeholder-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
               placeholder="ihre@email.de"
             />
           </div>
 
           <!-- Unternehmen -->
           <div>
-            <label for="company" class="block text-sm font-medium text-slate-200 mb-2">Unternehmen</label>
+            <label for="company" class="block text-sm font-medium text-body mb-2">Unternehmen</label>
             <input
               type="text"
               id="company"
               name="company"
-              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-300 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              class="w-full bg-card border border-divider rounded-xl px-5 py-3.5 text-heading placeholder-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
               placeholder="Firmenname"
             />
           </div>
 
           <!-- Teamgröße -->
           <div>
-            <label for="teamsize" class="block text-sm font-medium text-slate-200 mb-2">Teamgröße (Entwickler)</label>
+            <label for="teamsize" class="block text-sm font-medium text-body mb-2">Teamgröße (Entwickler)</label>
             <input
               type="text"
               id="teamsize"
               name="teamsize"
-              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-300 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              class="w-full bg-card border border-divider rounded-xl px-5 py-3.5 text-heading placeholder-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
               placeholder="z.B. 8 Entwickler"
             />
           </div>
 
           <!-- Nachricht -->
           <div>
-            <label for="message" class="block text-sm font-medium text-slate-200 mb-2">Nachricht</label>
+            <label for="message" class="block text-sm font-medium text-body mb-2">Nachricht</label>
             <textarea
               id="message"
               name="message"
               rows="4"
-              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-300 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors resize-none"
+              class="w-full bg-card border border-divider rounded-xl px-5 py-3.5 text-heading placeholder-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
               placeholder="Welcher Stack, welche Tools nutzt Ihr Team schon, wo hakt es?"
             ></textarea>
           </div>
@@ -447,7 +447,7 @@ import Layout from '../layouts/Layout.astro';
           <!-- Submit -->
           <button
             type="submit"
-            class="w-full bg-accent-500 hover:bg-accent-400 text-white font-semibold py-4 rounded-xl text-lg transition-colors cursor-pointer"
+            class="w-full cta-gradient font-semibold py-4 rounded-xl text-lg cursor-pointer"
           >
             Kostenloses Erstgespräch vereinbaren
           </button>
@@ -457,7 +457,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="mt-4">
           <a
             href="tel:+4915256719943"
-            class="flex items-center justify-center gap-3 w-full border border-white/20 hover:border-white/40 text-slate-200 hover:text-white font-semibold py-4 rounded-xl text-lg transition-colors"
+            class="flex items-center justify-center gap-3 w-full border border-divider hover:border-accent text-body hover:text-heading font-semibold py-4 rounded-xl text-lg transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             <span>oder rufen Sie an: 0152 567 199 43</span>
@@ -558,12 +558,12 @@ import Layout from '../layouts/Layout.astro';
   </script>
 
   <!-- Footer -->
-  <footer class="border-t border-white/5 py-8">
+  <footer class="border-t border-divider py-8">
     <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="text-sm text-slate-500">&copy; 2026 Christian Braun & Tobias Weber</span>
+      <span class="text-sm text-muted">&copy; 2026 Christian Braun & Tobias Weber</span>
       <div class="flex gap-6">
-        <a href={`${import.meta.env.BASE_URL}impressum`} class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Impressum</a>
-        <a href={`${import.meta.env.BASE_URL}datenschutz`} class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Datenschutz</a>
+        <a href={`${import.meta.env.BASE_URL}impressum`} class="text-sm text-muted hover:text-body transition-colors">Impressum</a>
+        <a href={`${import.meta.env.BASE_URL}datenschutz`} class="text-sm text-muted hover:text-body transition-colors">Datenschutz</a>
       </div>
     </div>
   </footer>

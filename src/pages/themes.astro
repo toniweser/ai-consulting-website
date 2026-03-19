@@ -1,0 +1,697 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Farbvarianten — Hero Section" noindex={true}>
+
+<style is:global>
+  /* Shared hero styles */
+  .theme-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .theme-hero .blob-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .theme-hero .blob {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .theme-hero .content {
+    position: relative;
+    z-index: 10;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+
+  .theme-hero .content .inner {
+    max-width: 48rem;
+  }
+
+  .theme-hero h1 {
+    font-size: clamp(2.25rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+  }
+
+  .theme-hero p.subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    max-width: 42rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .theme-hero .cta {
+    display: inline-block;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 1.125rem;
+    transition: filter 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: #fff;
+  }
+  .theme-hero .cta:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  /* Warm gradient CTA — shared across all variants */
+  .cta-warm {
+    background: linear-gradient(135deg, #ea580c, #be185d);
+  }
+  .cta-warm-deep {
+    background: linear-gradient(135deg, #c2410c, #9d174d);
+  }
+
+  .theme-label {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 20;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    backdrop-filter: blur(8px);
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    40%, 60% { opacity: 0; }
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ── Film grain overlay ── */
+  .grain::after,
+  .grain-light::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background-image: var(--grain-url, none);
+    background-repeat: repeat;
+    background-size: 150px 150px;
+  }
+  .grain::after {
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+  }
+  .grain-light::after {
+    opacity: 0.025;
+    mix-blend-mode: multiply;
+  }
+
+  /* ── VARIANT 1: Current Dark ── */
+  .theme-dark {
+    background-color: #06061a;
+  }
+  .theme-dark .blob-1 {
+    width: 600px; height: 600px;
+    top: 10%; left: 20%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #ec4899 40%, #a855f7 70%, transparent 100%);
+    filter: blur(80px); opacity: 0.45;
+    animation: wander-1 20s ease-in-out infinite alternate;
+  }
+  .theme-dark .blob-2 {
+    width: 400px; height: 400px;
+    top: 40%; left: 50%;
+    background: radial-gradient(circle at 40% 50%, #f97316, #ec4899 50%, #a855f7 80%, transparent 100%);
+    filter: blur(60px); opacity: 0.35;
+    animation: wander-2 25s ease-in-out infinite alternate;
+  }
+  .theme-dark .blob-3 {
+    width: 600px; height: 600px;
+    top: 65%; left: 10%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #ec4899 40%, #a855f7 70%, transparent 100%);
+    filter: blur(80px); opacity: 0.45;
+    animation: wander-3 22s ease-in-out infinite alternate;
+  }
+  .theme-dark h1 { color: #ffffff; }
+  .theme-dark .gradient-text {
+    background: linear-gradient(to right, #f97316, #ec4899, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .theme-dark .cursor-blink { background-color: rgba(255,255,255,0.7); }
+  .theme-dark p.subtitle { color: #cbd5e1; }
+  .theme-dark .theme-label { background: rgba(255,255,255,0.1); color: #e2e8f0; }
+  .theme-dark .nav-mock {
+    background: rgba(6,6,26,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+  }
+  .theme-dark .nav-mock .brand { color: #fff; }
+  .theme-dark .nav-mock .link { color: #cbd5e1; }
+  .theme-dark .nav-mock .cta-nav { background: linear-gradient(135deg, #ea580c, #be185d); color: #fff; }
+
+  /* ── VARIANT 2: Dark + Grain ── */
+  .theme-dark-grain {
+    background-color: #06061a;
+  }
+  .theme-dark-grain .blob-1 {
+    width: 600px; height: 600px;
+    top: 10%; left: 20%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #ec4899 40%, #a855f7 70%, transparent 100%);
+    filter: blur(80px); opacity: 0.45;
+    animation: wander-1 20s ease-in-out infinite alternate;
+  }
+  .theme-dark-grain .blob-2 {
+    width: 400px; height: 400px;
+    top: 40%; left: 50%;
+    background: radial-gradient(circle at 40% 50%, #f97316, #ec4899 50%, #a855f7 80%, transparent 100%);
+    filter: blur(60px); opacity: 0.35;
+    animation: wander-2 25s ease-in-out infinite alternate;
+  }
+  .theme-dark-grain .blob-3 {
+    width: 600px; height: 600px;
+    top: 65%; left: 10%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #ec4899 40%, #a855f7 70%, transparent 100%);
+    filter: blur(80px); opacity: 0.45;
+    animation: wander-3 22s ease-in-out infinite alternate;
+  }
+  .theme-dark-grain h1 { color: #ffffff; }
+  .theme-dark-grain .gradient-text {
+    background: linear-gradient(to right, #f97316, #ec4899, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .theme-dark-grain .cursor-blink { background-color: rgba(255,255,255,0.7); }
+  .theme-dark-grain p.subtitle { color: #cbd5e1; }
+  .theme-dark-grain .theme-label { background: rgba(255,255,255,0.1); color: #e2e8f0; }
+  .theme-dark-grain .nav-mock {
+    background: rgba(6,6,26,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+  }
+  .theme-dark-grain .nav-mock .brand { color: #fff; }
+  .theme-dark-grain .nav-mock .link { color: #cbd5e1; }
+  .theme-dark-grain .nav-mock .cta-nav { background: linear-gradient(135deg, #ea580c, #be185d); color: #fff; }
+
+  /* ── VARIANT 3: Twilight ── */
+  .theme-twilight {
+    background-color: #151530;
+  }
+  .theme-twilight .blob-1 {
+    width: 600px; height: 600px;
+    top: 10%; left: 15%;
+    background: radial-gradient(circle at 30% 40%, #fb923c, #f472b6 40%, #a78bfa 70%, transparent 100%);
+    filter: blur(90px); opacity: 0.35;
+    animation: wander-1 20s ease-in-out infinite alternate;
+  }
+  .theme-twilight .blob-2 {
+    width: 450px; height: 450px;
+    top: 35%; left: 55%;
+    background: radial-gradient(circle at 40% 50%, #38bdf8, #818cf8 50%, #c084fc 80%, transparent 100%);
+    filter: blur(70px); opacity: 0.3;
+    animation: wander-2 25s ease-in-out infinite alternate;
+  }
+  .theme-twilight .blob-3 {
+    width: 500px; height: 500px;
+    top: 60%; left: 5%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #e879f9 40%, #6366f1 70%, transparent 100%);
+    filter: blur(80px); opacity: 0.3;
+    animation: wander-3 22s ease-in-out infinite alternate;
+  }
+  .theme-twilight h1 { color: #f1f5f9; }
+  .theme-twilight .gradient-text {
+    background: linear-gradient(to right, #fb923c, #f472b6, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .theme-twilight .cursor-blink { background-color: rgba(241,245,249,0.7); }
+  .theme-twilight p.subtitle { color: #94a3b8; }
+  .theme-twilight .theme-label { background: rgba(255,255,255,0.08); color: #cbd5e1; }
+  .theme-twilight .nav-mock {
+    background: rgba(21,21,48,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+  }
+  .theme-twilight .nav-mock .brand { color: #f1f5f9; }
+  .theme-twilight .nav-mock .link { color: #94a3b8; }
+  .theme-twilight .nav-mock .cta-nav { background: linear-gradient(135deg, #ea580c, #be185d); color: #fff; }
+
+  /* ── VARIANT 4: Twilight + Grain ── */
+  .theme-twilight-grain {
+    background-color: #151530;
+  }
+  .theme-twilight-grain .blob-1 {
+    width: 600px; height: 600px;
+    top: 10%; left: 15%;
+    background: radial-gradient(circle at 30% 40%, #fb923c, #f472b6 40%, #a78bfa 70%, transparent 100%);
+    filter: blur(90px); opacity: 0.35;
+    animation: wander-1 20s ease-in-out infinite alternate;
+  }
+  .theme-twilight-grain .blob-2 {
+    width: 450px; height: 450px;
+    top: 35%; left: 55%;
+    background: radial-gradient(circle at 40% 50%, #38bdf8, #818cf8 50%, #c084fc 80%, transparent 100%);
+    filter: blur(70px); opacity: 0.3;
+    animation: wander-2 25s ease-in-out infinite alternate;
+  }
+  .theme-twilight-grain .blob-3 {
+    width: 500px; height: 500px;
+    top: 60%; left: 5%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #e879f9 40%, #6366f1 70%, transparent 100%);
+    filter: blur(80px); opacity: 0.3;
+    animation: wander-3 22s ease-in-out infinite alternate;
+  }
+  .theme-twilight-grain h1 { color: #f1f5f9; }
+  .theme-twilight-grain .gradient-text {
+    background: linear-gradient(to right, #fb923c, #f472b6, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .theme-twilight-grain .cursor-blink { background-color: rgba(241,245,249,0.7); }
+  .theme-twilight-grain p.subtitle { color: #94a3b8; }
+  .theme-twilight-grain .theme-label { background: rgba(255,255,255,0.08); color: #cbd5e1; }
+  .theme-twilight-grain .nav-mock {
+    background: rgba(21,21,48,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+  }
+  .theme-twilight-grain .nav-mock .brand { color: #f1f5f9; }
+  .theme-twilight-grain .nav-mock .link { color: #94a3b8; }
+  .theme-twilight-grain .nav-mock .cta-nav { background: linear-gradient(135deg, #ea580c, #be185d); color: #fff; }
+
+  /* ── VARIANT 5: Warm Light (darker than before) ── */
+  .theme-warm-light {
+    background-color: #eae8e1;
+  }
+  .theme-warm-light .blob-1 {
+    width: 600px; height: 600px;
+    top: 5%; left: 20%;
+    background: radial-gradient(circle at 30% 40%, #fdba74, #f9a8d4 40%, #c4b5fd 70%, transparent 100%);
+    filter: blur(100px); opacity: 0.55;
+    animation: wander-1 20s ease-in-out infinite alternate;
+  }
+  .theme-warm-light .blob-2 {
+    width: 450px; height: 450px;
+    top: 40%; left: 55%;
+    background: radial-gradient(circle at 40% 50%, #fbbf24, #f472b6 50%, #a78bfa 80%, transparent 100%);
+    filter: blur(80px); opacity: 0.4;
+    animation: wander-2 25s ease-in-out infinite alternate;
+  }
+  .theme-warm-light .blob-3 {
+    width: 500px; height: 500px;
+    top: 60%; left: 5%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #f9a8d4 40%, #c4b5fd 70%, transparent 100%);
+    filter: blur(90px); opacity: 0.4;
+    animation: wander-3 22s ease-in-out infinite alternate;
+  }
+  .theme-warm-light h1 { color: #1a1a2e; }
+  .theme-warm-light .gradient-text {
+    background: linear-gradient(to right, #c2410c, #be185d, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .theme-warm-light .cursor-blink { background-color: rgba(26,26,46,0.45); }
+  .theme-warm-light p.subtitle { color: #44445a; }
+  .theme-warm-light .theme-label { background: rgba(0,0,0,0.06); color: #44445a; }
+  .theme-warm-light .nav-mock {
+    background: rgba(234,232,225,0.85);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(12px);
+  }
+  .theme-warm-light .nav-mock .brand { color: #1a1a2e; }
+  .theme-warm-light .nav-mock .link { color: #44445a; }
+  .theme-warm-light .nav-mock .cta-nav { background: linear-gradient(135deg, #c2410c, #9d174d); color: #fff; }
+
+  /* ── VARIANT 6: Warm Light + Grain ── */
+  .theme-warm-light-grain {
+    background-color: #eae8e1;
+  }
+  .theme-warm-light-grain .blob-1 {
+    width: 600px; height: 600px;
+    top: 5%; left: 20%;
+    background: radial-gradient(circle at 30% 40%, #fdba74, #f9a8d4 40%, #c4b5fd 70%, transparent 100%);
+    filter: blur(100px); opacity: 0.55;
+    animation: wander-1 20s ease-in-out infinite alternate;
+  }
+  .theme-warm-light-grain .blob-2 {
+    width: 450px; height: 450px;
+    top: 40%; left: 55%;
+    background: radial-gradient(circle at 40% 50%, #fbbf24, #f472b6 50%, #a78bfa 80%, transparent 100%);
+    filter: blur(80px); opacity: 0.4;
+    animation: wander-2 25s ease-in-out infinite alternate;
+  }
+  .theme-warm-light-grain .blob-3 {
+    width: 500px; height: 500px;
+    top: 60%; left: 5%;
+    background: radial-gradient(circle at 30% 40%, #f97316, #f9a8d4 40%, #c4b5fd 70%, transparent 100%);
+    filter: blur(90px); opacity: 0.4;
+    animation: wander-3 22s ease-in-out infinite alternate;
+  }
+  .theme-warm-light-grain h1 { color: #1a1a2e; }
+  .theme-warm-light-grain .gradient-text {
+    background: linear-gradient(to right, #c2410c, #be185d, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .theme-warm-light-grain .cursor-blink { background-color: rgba(26,26,46,0.45); }
+  .theme-warm-light-grain p.subtitle { color: #44445a; }
+  .theme-warm-light-grain .theme-label { background: rgba(0,0,0,0.06); color: #44445a; }
+  .theme-warm-light-grain .nav-mock {
+    background: rgba(234,232,225,0.85);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(12px);
+  }
+  .theme-warm-light-grain .nav-mock .brand { color: #1a1a2e; }
+  .theme-warm-light-grain .nav-mock .link { color: #44445a; }
+  .theme-warm-light-grain .nav-mock .cta-nav { background: linear-gradient(135deg, #c2410c, #9d174d); color: #fff; }
+
+  /* Shared keyframes */
+  @keyframes wander-1 {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(15vw, 10vh); }
+    50%  { transform: translate(-10vw, 20vh); }
+    75%  { transform: translate(20vw, -5vh); }
+    100% { transform: translate(-5vw, 15vh); }
+  }
+  @keyframes wander-2 {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-20vw, -15vh); }
+    50%  { transform: translate(10vw, 10vh); }
+    75%  { transform: translate(-15vw, 20vh); }
+    100% { transform: translate(5vw, -10vh); }
+  }
+  @keyframes wander-3 {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(20vw, -10vh); }
+    50%  { transform: translate(-5vw, 15vh); }
+    75%  { transform: translate(15vw, 5vh); }
+    100% { transform: translate(-10vw, -15vh); }
+  }
+
+  /* Nav mock */
+  .nav-mock {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 15;
+    padding: 1rem 1.5rem;
+  }
+  .nav-mock .nav-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-mock .brand {
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+  }
+  .nav-mock .links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .nav-mock .link {
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-mock .link:hover { opacity: 0.8; }
+  .nav-mock .cta-nav {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-mock .links { display: none; }
+    .theme-hero .blob {
+      width: 300px !important;
+      height: 300px !important;
+    }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- VARIANT 1: DARK — Warm Gradient CTA   -->
+<!-- ═══════════════════════════════════════ -->
+<section class="theme-hero theme-dark">
+  <span class="theme-label">Dark — Warm CTA</span>
+  <div class="nav-mock">
+    <div class="nav-inner">
+      <span class="brand">Braun & Weber KI-Beratung</span>
+      <div class="links">
+        <a class="link" href="#">Workshop</a>
+        <a class="link" href="#">Für wen</a>
+        <a class="link" href="#">Über uns</a>
+        <a class="cta-nav" href="#">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+  <div class="blob-wrap" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <h1>
+        Die größte Revolution seit dem Internet.<br />
+        <span class="gradient-text">Zeit, Ihr Team aufzustellen.</span>
+        <span class="cursor-blink" style="display:inline-block;width:0.5em;height:0.9em;margin-left:0.125rem;vertical-align:-0.03em;"></span>
+      </h1>
+      <p class="subtitle">
+        Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
+      </p>
+      <a href="#" class="cta cta-warm">Kostenloses Erstgespräch vereinbaren</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- VARIANT 2: DARK + GRAIN               -->
+<!-- ═══════════════════════════════════════ -->
+<section class="theme-hero theme-dark-grain grain">
+  <span class="theme-label">Dark + Grain</span>
+  <div class="nav-mock">
+    <div class="nav-inner">
+      <span class="brand">Braun & Weber KI-Beratung</span>
+      <div class="links">
+        <a class="link" href="#">Workshop</a>
+        <a class="link" href="#">Für wen</a>
+        <a class="link" href="#">Über uns</a>
+        <a class="cta-nav" href="#">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+  <div class="blob-wrap" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <h1>
+        Die größte Revolution seit dem Internet.<br />
+        <span class="gradient-text">Zeit, Ihr Team aufzustellen.</span>
+        <span class="cursor-blink" style="display:inline-block;width:0.5em;height:0.9em;margin-left:0.125rem;vertical-align:-0.03em;"></span>
+      </h1>
+      <p class="subtitle">
+        Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
+      </p>
+      <a href="#" class="cta cta-warm">Kostenloses Erstgespräch vereinbaren</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- VARIANT 3: TWILIGHT — Warm CTA        -->
+<!-- ═══════════════════════════════════════ -->
+<section class="theme-hero theme-twilight">
+  <span class="theme-label">Twilight — Warm CTA</span>
+  <div class="nav-mock">
+    <div class="nav-inner">
+      <span class="brand">Braun & Weber KI-Beratung</span>
+      <div class="links">
+        <a class="link" href="#">Workshop</a>
+        <a class="link" href="#">Für wen</a>
+        <a class="link" href="#">Über uns</a>
+        <a class="cta-nav" href="#">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+  <div class="blob-wrap" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <h1>
+        Die größte Revolution seit dem Internet.<br />
+        <span class="gradient-text">Zeit, Ihr Team aufzustellen.</span>
+        <span class="cursor-blink" style="display:inline-block;width:0.5em;height:0.9em;margin-left:0.125rem;vertical-align:-0.03em;"></span>
+      </h1>
+      <p class="subtitle">
+        Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
+      </p>
+      <a href="#" class="cta cta-warm">Kostenloses Erstgespräch vereinbaren</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- VARIANT 4: TWILIGHT + GRAIN           -->
+<!-- ═══════════════════════════════════════ -->
+<section class="theme-hero theme-twilight-grain grain">
+  <span class="theme-label">Twilight + Grain</span>
+  <div class="nav-mock">
+    <div class="nav-inner">
+      <span class="brand">Braun & Weber KI-Beratung</span>
+      <div class="links">
+        <a class="link" href="#">Workshop</a>
+        <a class="link" href="#">Für wen</a>
+        <a class="link" href="#">Über uns</a>
+        <a class="cta-nav" href="#">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+  <div class="blob-wrap" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <h1>
+        Die größte Revolution seit dem Internet.<br />
+        <span class="gradient-text">Zeit, Ihr Team aufzustellen.</span>
+        <span class="cursor-blink" style="display:inline-block;width:0.5em;height:0.9em;margin-left:0.125rem;vertical-align:-0.03em;"></span>
+      </h1>
+      <p class="subtitle">
+        Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
+      </p>
+      <a href="#" class="cta cta-warm">Kostenloses Erstgespräch vereinbaren</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- VARIANT 5: WARM LIGHT                 -->
+<!-- ═══════════════════════════════════════ -->
+<section class="theme-hero theme-warm-light">
+  <span class="theme-label">Warm Light (#eae8e1)</span>
+  <div class="nav-mock">
+    <div class="nav-inner">
+      <span class="brand">Braun & Weber KI-Beratung</span>
+      <div class="links">
+        <a class="link" href="#">Workshop</a>
+        <a class="link" href="#">Für wen</a>
+        <a class="link" href="#">Über uns</a>
+        <a class="cta-nav" href="#">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+  <div class="blob-wrap" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <h1>
+        Die größte Revolution seit dem Internet.<br />
+        <span class="gradient-text">Zeit, Ihr Team aufzustellen.</span>
+        <span class="cursor-blink" style="display:inline-block;width:0.5em;height:0.9em;margin-left:0.125rem;vertical-align:-0.03em;"></span>
+      </h1>
+      <p class="subtitle">
+        Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
+      </p>
+      <a href="#" class="cta cta-warm-deep">Kostenloses Erstgespräch vereinbaren</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- VARIANT 6: WARM LIGHT + GRAIN         -->
+<!-- ═══════════════════════════════════════ -->
+<section class="theme-hero theme-warm-light-grain grain-light">
+  <span class="theme-label">Warm Light + Grain</span>
+  <div class="nav-mock">
+    <div class="nav-inner">
+      <span class="brand">Braun & Weber KI-Beratung</span>
+      <div class="links">
+        <a class="link" href="#">Workshop</a>
+        <a class="link" href="#">Für wen</a>
+        <a class="link" href="#">Über uns</a>
+        <a class="cta-nav" href="#">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+  <div class="blob-wrap" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <h1>
+        Die größte Revolution seit dem Internet.<br />
+        <span class="gradient-text">Zeit, Ihr Team aufzustellen.</span>
+        <span class="cursor-blink" style="display:inline-block;width:0.5em;height:0.9em;margin-left:0.125rem;vertical-align:-0.03em;"></span>
+      </h1>
+      <p class="subtitle">
+        Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
+      </p>
+      <a href="#" class="cta cta-warm-deep">Kostenloses Erstgespräch vereinbaren</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Generate a tileable noise texture via canvas
+  const size = 150;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.createImageData(size, size);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const v = Math.random() * 255;
+    data[i] = v;
+    data[i + 1] = v;
+    data[i + 2] = v;
+    data[i + 3] = 255;
+  }
+  ctx.putImageData(imageData, 0, 0);
+  const noiseUrl = canvas.toDataURL('image/png');
+
+  // Apply to all grain pseudo-elements via a shared CSS custom property
+  document.documentElement.style.setProperty('--grain-url', `url(${noiseUrl})`);
+</script>
+
+</Layout>

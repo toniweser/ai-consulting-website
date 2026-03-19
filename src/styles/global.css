@@ -2,30 +2,146 @@
 
 @theme {
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --color-navy-950: #06061a;
-  --color-navy-900: #0c0c2e;
-  --color-navy-800: #141442;
-  --color-navy-700: #1e1e5a;
-  --color-accent-500: #a855f7;
-  --color-accent-400: #c084fc;
-  --color-warm-orange: #f97316;
-  --color-warm-pink: #ec4899;
+
+  /* Semantic theme colors — light mode defaults, overridden by [data-theme="dark"] */
+  --color-heading: #1a1a2e;
+  --color-body: #44445a;
+  --color-muted: #6b6b80;
+  --color-accent: #c2410c;
+  --color-accent-hover: #ea580c;
+  --color-accent-soft: rgba(194, 65, 12, 0.12);
+  --color-surface: #eae8e1;
+  --color-surface-nav: rgba(234, 232, 225, 0.85);
+  --color-card: rgba(0, 0, 0, 0.04);
+  --color-card-hover: rgba(0, 0, 0, 0.06);
+  --color-divider: rgba(0, 0, 0, 0.06);
 }
 
+/* ── Dark theme overrides ── */
+[data-theme="dark"] {
+  --color-heading: #f1f5f9;
+  --color-body: #94a3b8;
+  --color-muted: #64748b;
+  --color-accent: #fb923c;
+  --color-accent-hover: #fdba74;
+  --color-accent-soft: rgba(251, 146, 60, 0.15);
+  --color-surface: #151530;
+  --color-surface-nav: rgba(21, 21, 48, 0.85);
+  --color-card: rgba(255, 255, 255, 0.05);
+  --color-card-hover: rgba(255, 255, 255, 0.07);
+  --color-divider: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Non-Tailwind theme variables ── */
+:root {
+  --cta-from: #c2410c;
+  --cta-to: #9d174d;
+  --gradient-from: #c2410c;
+  --gradient-via: #be185d;
+  --gradient-to: #7c3aed;
+  --cursor-color: rgba(26, 26, 46, 0.45);
+  --grain-opacity: 0.025;
+  --grain-blend: multiply;
+  --blob-1-bg: radial-gradient(circle at 30% 40%, #fdba74, #f9a8d4 40%, #c4b5fd 70%, transparent 100%);
+  --blob-1-blur: 100px;
+  --blob-1-opacity: 0.55;
+  --blob-2-bg: radial-gradient(circle at 40% 50%, #fbbf24, #f472b6 50%, #a78bfa 80%, transparent 100%);
+  --blob-2-blur: 80px;
+  --blob-2-opacity: 0.4;
+  --blob-3-bg: radial-gradient(circle at 30% 40%, #f97316, #f9a8d4 40%, #c4b5fd 70%, transparent 100%);
+  --blob-3-blur: 90px;
+  --blob-3-opacity: 0.4;
+}
+
+[data-theme="dark"] {
+  --cta-from: #ea580c;
+  --cta-to: #be185d;
+  --gradient-from: #fb923c;
+  --gradient-via: #f472b6;
+  --gradient-to: #a78bfa;
+  --cursor-color: rgba(241, 245, 249, 0.7);
+  --grain-opacity: 0.06;
+  --grain-blend: overlay;
+  --blob-1-bg: radial-gradient(circle at 30% 40%, #fb923c, #f472b6 40%, #a78bfa 70%, transparent 100%);
+  --blob-1-blur: 90px;
+  --blob-1-opacity: 0.35;
+  --blob-2-bg: radial-gradient(circle at 40% 50%, #38bdf8, #818cf8 50%, #c084fc 80%, transparent 100%);
+  --blob-2-blur: 70px;
+  --blob-2-opacity: 0.3;
+  --blob-3-bg: radial-gradient(circle at 30% 40%, #f97316, #e879f9 40%, #6366f1 70%, transparent 100%);
+  --blob-3-blur: 80px;
+  --blob-3-opacity: 0.3;
+}
+
+/* ── Color scheme for native elements ── */
+[data-theme="light"] { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+
+/* ── Base ── */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background-color: var(--color-navy-950);
+  background-color: var(--color-surface);
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-navy-950);
-  color: #f1f5f9;
+  background-color: var(--color-surface);
+  color: var(--color-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Grain overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url('/grain.png');
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+}
+
+/* ── CTA gradient button ── */
+.cta-gradient {
+  background: linear-gradient(135deg, var(--cta-from), var(--cta-to));
+  color: #fff;
+  transition: filter 0.2s, transform 0.2s;
+}
+.cta-gradient:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(to right, var(--gradient-from), var(--gradient-via), var(--gradient-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Cursor blink ── */
+.cursor-blink {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.9em;
+  background-color: var(--cursor-color);
+  margin-left: 0.125rem;
+  vertical-align: -0.03em;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  40%, 60% { opacity: 0; }
+}
+
+/* ── Blobs ── */
 .blob-container {
   position: fixed;
   inset: 0;
@@ -43,57 +159,55 @@ body {
   will-change: transform;
 }
 
-.gradient-blob {
+#blob-1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle at 30% 40%, #f97316, #ec4899 40%, #a855f7 70%, transparent 100%);
-  filter: blur(80px);
-  -webkit-filter: blur(80px);
-  opacity: 0.45;
+  top: 10%;
+  left: 20%;
+  background: var(--blob-1-bg);
+  filter: blur(var(--blob-1-blur));
+  -webkit-filter: blur(var(--blob-1-blur));
+  opacity: var(--blob-1-opacity);
+  animation: wander-1 20s ease-in-out infinite alternate;
 }
 
-.gradient-blob-sm {
+#blob-2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle at 40% 50%, #f97316, #ec4899 50%, #a855f7 80%, transparent 100%);
-  filter: blur(60px);
-  -webkit-filter: blur(60px);
-  opacity: 0.35;
+  top: 40%;
+  left: 50%;
+  background: var(--blob-2-bg);
+  filter: blur(var(--blob-2-blur));
+  -webkit-filter: blur(var(--blob-2-blur));
+  opacity: var(--blob-2-opacity);
+  animation: wander-2 25s ease-in-out infinite alternate;
 }
 
-/* Mobile: smaller blobs */
+#blob-3 {
+  width: 600px;
+  height: 600px;
+  top: 65%;
+  left: 10%;
+  background: var(--blob-3-bg);
+  filter: blur(var(--blob-3-blur));
+  -webkit-filter: blur(var(--blob-3-blur));
+  opacity: var(--blob-3-opacity);
+  animation: wander-3 22s ease-in-out infinite alternate;
+}
+
 @media (max-width: 768px) {
-  .gradient-blob {
+  #blob-1, #blob-3 {
     width: 350px;
     height: 350px;
     filter: blur(60px);
     -webkit-filter: blur(60px);
   }
-  .gradient-blob-sm {
+  #blob-2 {
     width: 250px;
     height: 250px;
     filter: blur(50px);
     -webkit-filter: blur(50px);
   }
-}
-
-/* CSS-only fallback: use transform instead of top/left for Safari perf */
-#blob-1 {
-  top: 10%;
-  left: 20%;
-  animation: wander-1 20s ease-in-out infinite alternate;
-}
-
-#blob-2 {
-  top: 40%;
-  left: 50%;
-  animation: wander-2 25s ease-in-out infinite alternate;
-}
-
-#blob-3 {
-  top: 65%;
-  left: 10%;
-  animation: wander-3 22s ease-in-out infinite alternate;
 }
 
 @keyframes wander-1 {

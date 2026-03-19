@@ -2,15 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Braun & Weber — KI-Beratung für den Mittelstand">
+<Layout title="Braun & Weber — KI-Beratung für Entwicklerteams">
 
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <span class="text-white font-bold text-lg tracking-tight">Braun & Weber KI-Beratung</span>
       <div class="hidden md:flex items-center gap-8">
-        <a href="#so-helfen-wir" class="text-sm text-slate-200 hover:text-white transition-colors">So helfen wir</a>
-        <a href="#beispiele" class="text-sm text-slate-200 hover:text-white transition-colors">Beispiele</a>
+        <a href="#workshop" class="text-sm text-slate-200 hover:text-white transition-colors">Workshop</a>
+        <a href="#fuer-wen" class="text-sm text-slate-200 hover:text-white transition-colors">Für wen</a>
         <a href="#ueber-uns" class="text-sm text-slate-200 hover:text-white transition-colors">Über uns</a>
         <a href="#kontakt" class="text-sm text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-2 rounded-lg transition-colors">Kostenloses Erstgespräch</a>
       </div>
@@ -24,8 +24,8 @@ import Layout from '../layouts/Layout.astro';
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-navy-950/95 backdrop-blur-md">
       <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
-        <a href="#so-helfen-wir" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">So helfen wir</a>
-        <a href="#beispiele" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Beispiele</a>
+        <a href="#workshop" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Workshop</a>
+        <a href="#fuer-wen" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Für wen</a>
         <a href="#ueber-uns" class="text-slate-200 hover:text-white transition-colors mobile-nav-link">Über uns</a>
         <a href="#kontakt" class="text-white font-semibold bg-accent-500 hover:bg-accent-400 px-5 py-3 rounded-lg transition-colors text-center mobile-nav-link">Kostenloses Erstgespräch</a>
       </div>
@@ -132,7 +132,7 @@ import Layout from '../layouts/Layout.astro';
           tick();
         </script>
         <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-2xl mb-10">
-          Code schreiben, Tickets formulieren, Dokumentation pflegen, Angebote erstellen, Kundenanfragen beantworten — Aufgaben, die heute Stunden kosten, erledigt KI in Minuten. Ob Entwicklerteam oder Fachabteilung: Wir zeigen Ihrem Team, wie. In einem Workshop, der auf Ihr Unternehmen zugeschnitten ist.
+          Coding Agents verändern, wie Software entsteht — aber nur wenn das ganze Team mitzieht. Wir zeigen Ihren Entwicklern in einem hands-on Workshop, wie sie mit KI-Tools am eigenen Code produktiver arbeiten. Kein Vortrag, kein Spielbeispiel. Echte Arbeit, echte Ergebnisse.
         </p>
         <a
           href="#kontakt"
@@ -144,12 +144,12 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- SEKTION 2: So helfen wir -->
-  <section id="so-helfen-wir" class="relative py-24 md:py-32">
+  <!-- SEKTION 2: Das Problem -->
+  <section class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">So helfen wir Ihrem Unternehmen</h2>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Das kennen Sie: Ihr Team nutzt KI — aber nicht richtig.</h2>
       <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
-        Viele Unternehmen haben KI ausprobiert — und waren nicht überzeugt. Das ist nachvollziehbar. Aber die Technologie hat sich grundlegend weiterentwickelt. Was vor Monaten noch unzuverlässig war, ist heute ein Werkzeug, auf das sich Ihr Team verlassen kann. Wir zeigen Ihnen, wo es sich für Sie lohnt — und wo nicht.
+        Zwei Entwickler schwören auf Copilot. Einer hat Coding Agents entdeckt und ist begeistert. Drei haben es ausprobiert und wieder gelassen. Und einer hält KI-generierten Code für gefährlich. Das Ergebnis: Kein einheitlicher Stand, keine Best Practices, keine messbare Verbesserung. Ihr Team verschenkt Potenzial — nicht weil die Tools fehlen, sondern weil niemand den Rollout strukturiert hat.
       </p>
 
       <div class="grid md:grid-cols-3 gap-8">
@@ -159,9 +159,9 @@ import Layout from '../layouts/Layout.astro';
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Ihr Plan, nicht unserer</h3>
+          <h3 class="text-xl font-bold text-white mb-3">Einheitlicher Stand im Team</h3>
           <p class="text-slate-200 leading-relaxed">
-            Am Ende unseres Workshops haben Sie keinen abstrakten Strategiebericht, sondern einen konkreten Fahrplan — zugeschnitten auf Ihre Prozesse, Ihre Branche, Ihr Team.
+            Nicht nur die Early Adopter nutzen KI — das ganze Team. Mit klaren Workflows, abgestimmten Tools und gemeinsamen Spielregeln. Schluss mit "jeder macht irgendwas."
           </p>
         </div>
 
@@ -171,129 +171,153 @@ import Layout from '../layouts/Layout.astro';
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Zuverlässig im Arbeitsalltag</h3>
+          <h3 class="text-xl font-bold text-white mb-3">Messbar schnellere Ergebnisse</h3>
           <p class="text-slate-200 leading-relaxed">
-            KI-Tools sind heute robust genug für den täglichen Einsatz in Ihrem Unternehmen. Kein Experiment — ein Werkzeug, das funktioniert.
+            Code Reviews in Minuten statt Stunden. Tests, die sich selbst schreiben. Dokumentation, die nicht liegen bleibt. Ihre Entwickler arbeiten mit KI so routiniert wie mit Git.
           </p>
         </div>
 
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/[0.07] transition-colors">
           <div class="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-6 h-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.25-8.25-3.286ZM12 15.75h.007v.008H12v-.008Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-white mb-3">Datenschutz inklusive</h3>
+          <h3 class="text-xl font-bold text-white mb-3">Ein Fahrplan, der über den Workshop hinausgeht</h3>
           <p class="text-slate-200 leading-relaxed">
-            Wir wissen, dass Ihre Daten sensibel sind. Wir zeigen Ihnen DSGVO-konforme Wege, KI sicher einzusetzen — ohne Ihre Daten an Dritte zu geben.
+            Sie bekommen keinen abstrakten Strategiebericht, sondern einen konkreten Plan: Welche Tools für Ihr Team, welche Workflows für Ihre Codebasis, welche nächsten Schritte. Inklusive Empfehlung, was Sie nicht brauchen.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEKTION 3: Konkrete Beispiele -->
-  <section id="beispiele" class="relative py-24 md:py-32">
+  <!-- SEKTION 3: Wie der Workshop funktioniert -->
+  <section id="workshop" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Wo KI heute schon hilft</h2>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Erst verstehen, dann anwenden — an Ihrem Code.</h2>
       <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
-        Keine Theorie — das sind typische Szenarien, die wir in unseren Workshops mit Unternehmen erarbeiten.
+        Wir starten nicht mit einem Tool, sondern mit dem Konzept: Was sind Coding Agents? Wie verändern sie die Art, wie Software entsteht? Welche Tools gibt es — von Cursor über Claude Code bis Codex — und welches passt zu Ihrem Team und Ihrem Stack? Dann wird's konkret.
       </p>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Software-Entwicklung</p>
-          <h3 class="text-lg font-bold text-white mb-3">Entwickler, die mit KI schneller liefern</h3>
+          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-white mb-3">Features entwickeln</h3>
           <p class="text-slate-200 leading-relaxed">
-            Code schreiben, Reviews beschleunigen, Tests generieren, Bugs debuggen — mit Copilot, Claude Code und Cursor arbeiten Ihre Entwickler messbar produktiver. Am eigenen Code, nicht an Spielbeispielen.
+            Vom Ticket zur Implementierung — wie ein Agent dabei unterstützt, ohne dass Ihr Team die Kontrolle abgibt.
           </p>
         </div>
 
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Product & Projektmanagement</p>
-          <h3 class="text-lg font-bold text-white mb-3">Bessere Tickets, schnellere Dokumentation</h3>
+          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-white mb-3">Bugs fixen</h3>
           <p class="text-slate-200 leading-relaxed">
-            User Stories mit Akzeptanzkriterien in Minuten statt Stunden. Release Notes aus Git-History generieren. Sprint-Dokumentation automatisieren. Ihre POs und Scrum Master werden zum Multiplikator.
+            Fehler eingrenzen, Ursache verstehen, Lösung vorschlagen lassen — und wissen, wann man dem Vorschlag traut und wann nicht.
           </p>
         </div>
 
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Vertrieb & Angebotswesen</p>
-          <h3 class="text-lg font-bold text-white mb-3">Angebote in Minuten statt Stunden</h3>
+          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-white mb-3">Code Reviews beschleunigen</h3>
           <p class="text-slate-200 leading-relaxed">
-            Ihr Vertrieb erstellt individuelle Angebote auf Basis vergangener Aufträge, Preislisten und Kundenanforderungen. KI reduziert den Aufwand pro Angebot deutlich.
+            KI-gestützte Reviews, die echte Probleme finden — nicht nur Formatierung. Wie Ihr Team schneller reviewed, ohne Qualität zu verlieren.
           </p>
         </div>
 
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Kundenservice</p>
-          <h3 class="text-lg font-bold text-white mb-3">Anfragen schneller beantworten</h3>
+          <p class="text-accent-400 text-sm font-semibold mb-2">Berührungspunkt</p>
+          <h3 class="text-lg font-bold text-white mb-3">Erst an Beispielen, dann an Ihrem Code</h3>
           <p class="text-slate-200 leading-relaxed">
-            Wiederkehrende Kundenanfragen per E-Mail oder Ticket? KI erstellt Antwortentwürfe, die Ihr Team nur noch prüft und abschickt — Reaktionszeit halbiert.
+            Wir starten mit klaren, nachvollziehbaren Szenarien. Wenn das Konzept sitzt, wechseln wir auf Ihre Codebasis — mit echten Aufgaben aus Ihrem Backlog.
           </p>
         </div>
+      </div>
 
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Buchhaltung & Verwaltung</p>
-          <h3 class="text-lg font-bold text-white mb-3">Belege und Dokumente automatisch verarbeiten</h3>
-          <p class="text-slate-200 leading-relaxed">
-            Rechnungen erfassen, kategorisieren, zuordnen — Aufgaben, die Ihre Buchhaltung Stunden kosten. KI übernimmt die Vorarbeit, Ihr Team kontrolliert nur noch.
-          </p>
-        </div>
-
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-          <p class="text-accent-400 text-sm font-semibold mb-2">Marketing & Kommunikation</p>
-          <h3 class="text-lg font-bold text-white mb-3">Content erstellen, der nach Ihnen klingt</h3>
-          <p class="text-slate-200 leading-relaxed">
-            Newsletter, Social-Media-Posts, Produktbeschreibungen — KI erstellt Entwürfe in Ihrem Ton. Ihr Marketing-Team wird produktiver, ohne an Qualität zu verlieren.
-          </p>
-        </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
+        <p class="text-lg text-slate-200 leading-relaxed">
+          <span class="text-white font-semibold">Der Inhalt richtet sich nach Ihrem Team.</span> Steht Ihr Team am Anfang, starten wir bei den Grundlagen: Was kann ein Coding Agent, wo sind die Grenzen, wie promptet man richtig. Hat Ihr Team schon Erfahrung, gehen wir in die Tiefe: Vom Ticket über den Agent, der den Code schreibt, den PR erstellt, den Review durchläuft — bis zur Freigabe durch einen Menschen.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- SEKTION 4: Ablauf -->
+  <!-- SEKTION 4: Für wen -->
+  <section id="fuer-wen" class="relative py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Das ist für Sie, wenn...</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-slate-200 leading-relaxed">...Ihr Entwicklerteam zwischen 5 und 50 Leuten liegt</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-slate-200 leading-relaxed">...einige schon KI nutzen, aber nicht alle — und nicht systematisch</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-slate-200 leading-relaxed">...Sie wissen, dass KI-Tools produktiver machen, aber der Rollout hakt</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-slate-200 leading-relaxed">...Ihre Entwickler am eigenen Code lernen sollen, nicht an Folien</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex gap-4 items-start">
+          <span class="text-accent-400 text-xl mt-0.5 shrink-0">—</span>
+          <p class="text-slate-200 leading-relaxed">...Sie einen Plan wollen, nicht nur eine Inspiration</p>
+        </div>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
+        <h3 class="text-lg font-bold text-white mb-3">Kein Entwicklerteam, aber trotzdem neugierig?</h3>
+        <p class="text-slate-200 leading-relaxed">
+          KI kann auch in Vertrieb, Marketing und Sachbearbeitung enorm helfen. <a href="#kontakt" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">Schreiben Sie uns</a> — wir sagen Ihnen ehrlich, ob und wie wir Ihnen helfen können.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKTION 5: Ablauf -->
   <section class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">So läuft es ab</h2>
-      <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
-        Kein langes Drumherum. Drei Schritte, dann wissen Sie, wo KI Ihnen hilft.
-      </p>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Drei Schritte. Kein Drumherum.</h2>
 
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
           <div class="text-accent-400 text-4xl font-extrabold mb-4">1</div>
           <h3 class="text-lg font-bold text-white mb-3">Erstgespräch (kostenlos)</h3>
           <p class="text-slate-200 leading-relaxed">
-            30 Minuten, telefonisch oder per Video. Wir hören zu, stellen Fragen und finden heraus, wo bei Ihnen die größten Hebel liegen.
+            30 Minuten, per Video oder Telefon. Wir lernen Ihr Team kennen: Wie groß, welcher Stack, welche Tools schon im Einsatz, wo es hakt. Danach wissen Sie, ob ein Workshop für Sie sinnvoll ist — und wir sagen Ihnen ehrlich, wenn nicht.
           </p>
         </div>
 
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
           <div class="text-accent-400 text-4xl font-extrabold mb-4">2</div>
-          <h3 class="text-lg font-bold text-white mb-3">Workshop vor Ort oder remote</h3>
+          <h3 class="text-lg font-bold text-white mb-3">Workshop — vor Ort oder remote</h3>
           <p class="text-slate-200 leading-relaxed">
-            Ein halber bis ganzer Tag mit Ihrem Team. Für Entwickler: Hands-on am eigenen Code mit Copilot, Claude Code und Cursor. Für Product-Teams: KI-gestützte Tickets, Doku und Workflows. Für Fachabteilungen: KI im Arbeitsalltag.
+            Ein halber bis ganzer Tag mit Ihrem Entwicklerteam. Hands-on an Ihrem Code, nicht an unserem. Wir passen den Inhalt an Ihren Stack, Ihr Tooling und Ihr Erfahrungslevel an. Auch die Skeptiker kommen mit.
           </p>
         </div>
 
         <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
           <div class="text-accent-400 text-4xl font-extrabold mb-4">3</div>
-          <h3 class="text-lg font-bold text-white mb-3">Ihr Fahrplan zum Mitnehmen</h3>
+          <h3 class="text-lg font-bold text-white mb-3">Ihr Fahrplan</h3>
           <p class="text-slate-200 leading-relaxed">
-            Sie bekommen einen konkreten Plan: Welche Tools, welche Prozesse, welche nächsten Schritte. Kein Berater-Deutsch, sondern Klartext.
+            Nach dem Workshop bekommen Sie ein Dokument mit konkreten Empfehlungen: Welche Tools für Ihr Team, wie der Rollout aussehen sollte, was die nächsten Schritte sind, und was Sie sich sparen können. Kein 80-Seiten-PDF — Klartext auf den Punkt.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEKTION 5: Wer wir sind -->
+  <!-- SEKTION 6: Wer wir sind -->
   <section id="ueber-uns" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Wer wir sind</h2>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Zwei Entwickler, die jeden Tag mit KI-Tools arbeiten.</h2>
       <p class="text-lg md:text-xl text-slate-200 leading-relaxed max-w-3xl mb-16">
-        Wir sind selbst Entwickler und arbeiten täglich produktiv mit Claude Code, Copilot und Cursor. Wir verbinden diese Erfahrung mit praxisnaher Begleitung für Ihr Team — ob Engineering, Product oder Fachabteilung.
+        Keine Unternehmensberater, die KI aus der Ferne erklären. Wir schreiben selbst jeden Tag Code mit Coding Agents. Wir wissen, was funktioniert — und wo man aufpassen muss. Diese Erfahrung bringen wir in den Workshop mit.
       </p>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
@@ -309,7 +333,7 @@ import Layout from '../layouts/Layout.astro';
           <ul class="space-y-3 text-slate-200">
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>8+ Jahre Erfahrung in der IT-Beratung für Unternehmen</span>
+              <span>8+ Jahre IT-Beratung — unter anderem in regulierten Branchen</span>
             </li>
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
@@ -338,15 +362,11 @@ import Layout from '../layouts/Layout.astro';
           <ul class="space-y-3 text-slate-200">
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>8+ Jahre Erfahrung in der IT-Beratung für Unternehmen</span>
+              <span>8+ Jahre IT-Beratung — IBM, KURZ Digital Solutions</span>
             </li>
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>Host von <a href="https://open.spotify.com/show/2r1FGvYRkSYq4SmXyVKmnA" target="_blank" rel="noopener" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">Index out of bounds</a> — Podcast über Technologie und KI im Alltag</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-400 mt-1 shrink-0">—</span>
-              <span>IBM, KURZ Digital Solutions</span>
+              <span>Host von <a href="https://open.spotify.com/show/2r1FGvYRkSYq4SmXyVKmnA" target="_blank" rel="noopener" class="text-accent-400 hover:text-accent-300 underline underline-offset-2">Index out of bounds</a> — Podcast über Technologie und KI im Entwickleralltag</span>
             </li>
             <li class="flex gap-3">
               <span class="text-accent-400 mt-1 shrink-0">—</span>
@@ -359,19 +379,19 @@ import Layout from '../layouts/Layout.astro';
       <!-- Persönlicher Block -->
       <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
         <p class="text-lg text-slate-200 leading-relaxed">
-          Wir kennen uns seit Jahren — beruflich und privat. Wir schreiben selbst jeden Tag Code mit KI-Unterstützung und wissen, was funktioniert und was nicht. Diese Erfahrung bringen wir gezielt in unsere Workshops ein — für Entwicklerteams, Product Owner und Fachabteilungen gleichermaßen.
+          Wir kennen uns seit Jahren — beruflich und privat. Wir schreiben selbst jeden Tag Code mit Coding Agents und erleben, wie sich Softwareentwicklung gerade grundlegend verändert. Das hier ist nicht nur unser Geschäft — es ist das Thema, über das wir abends beim Bier reden. Wir machen das, weil wir überzeugt sind, dass jedes Entwicklerteam davon profitieren kann. Und weil es uns Spaß macht, dieses Wissen weiterzugeben.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SEKTION 6: Kontakt -->
+  <!-- SEKTION 7: Kontakt -->
   <section id="kontakt" class="relative py-24 md:py-32">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <div class="max-w-2xl mx-auto">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 text-center">Kostenloses Erstgespräch</h2>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 text-center">Erstgespräch vereinbaren — kostenlos, 30 Minuten.</h2>
         <p class="text-lg text-slate-200 leading-relaxed text-center mb-12">
-          30 Minuten, unverbindlich, ohne Verkaufsdruck. Wir hören zu und sagen Ihnen ehrlich, ob und wo KI Ihnen helfen kann. Wir melden uns innerhalb von 24 Stunden.
+          Kein Verkaufsgespräch. Wir hören zu, stellen Fragen, und sagen Ihnen ehrlich, ob ein Workshop für Ihr Team sinnvoll ist. Antwort innerhalb von 24 Stunden.
         </p>
 
         <form id="contact-form" class="space-y-6">
@@ -400,47 +420,17 @@ import Layout from '../layouts/Layout.astro';
             />
           </div>
 
-          <!-- Interessen -->
-          <fieldset>
-            <legend class="block text-sm font-medium text-slate-200 mb-3">Was interessiert Sie?</legend>
-            <div class="grid sm:grid-cols-2 gap-3">
-              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <div class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="KI-Workshop" class="accent-accent-500 w-4 h-4 shrink-0" />
-                  <span class="text-sm text-white font-medium">KI-Workshop</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1 ml-7">Praktisches Training für Ihr Team</p>
-              </label>
-              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <div class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="Strategieberatung" class="accent-accent-500 w-4 h-4 shrink-0" />
-                  <span class="text-sm text-white font-medium">Strategieberatung</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1 ml-7">Wo lohnt sich KI in Ihren Prozessen?</p>
-              </label>
-              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <div class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="Machbarkeitsanalyse" class="accent-accent-500 w-4 h-4 shrink-0" />
-                  <span class="text-sm text-white font-medium">Machbarkeitsanalyse</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1 ml-7">Einen konkreten Anwendungsfall prüfen lassen</p>
-              </label>
-              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <div class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="Developer Enablement" class="accent-accent-500 w-4 h-4 shrink-0" />
-                  <span class="text-sm text-white font-medium">Developer Enablement</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1 ml-7">Entwicklerteam mit KI-Tools produktiver machen</p>
-              </label>
-              <label class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-white/[0.07] transition-colors has-[:checked]:border-accent-500/50 has-[:checked]:bg-accent-500/10">
-                <div class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="Individuelle Lösung" class="accent-accent-500 w-4 h-4 shrink-0" />
-                  <span class="text-sm text-white font-medium">Individuelle Lösung</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1 ml-7">Ein KI-Tool für Ihren Bedarf entwickeln</p>
-              </label>
-            </div>
-          </fieldset>
+          <!-- Teamgröße -->
+          <div>
+            <label for="teamsize" class="block text-sm font-medium text-slate-200 mb-2">Teamgröße (Entwickler)</label>
+            <input
+              type="text"
+              id="teamsize"
+              name="teamsize"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-300 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors"
+              placeholder="z.B. 8 Entwickler"
+            />
+          </div>
 
           <!-- Nachricht -->
           <div>
@@ -450,7 +440,7 @@ import Layout from '../layouts/Layout.astro';
               name="message"
               rows="4"
               class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-slate-300 focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-colors resize-none"
-              placeholder="Erzählen Sie uns kurz, was Sie beschäftigt…"
+              placeholder="Welcher Stack, welche Tools nutzt Ihr Team schon, wo hakt es?"
             ></textarea>
           </div>
 
@@ -479,18 +469,17 @@ import Layout from '../layouts/Layout.astro';
             e.preventDefault();
             const email = document.getElementById('email').value;
             const company = document.getElementById('company').value;
+            const teamsize = document.getElementById('teamsize').value;
             const message = document.getElementById('message').value;
-
-            const interests = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value);
 
             const lines = [];
             if (company) lines.push('Unternehmen: ' + company);
             if (email) lines.push('E-Mail: ' + email);
-            if (interests.length) lines.push('Interesse an: ' + interests.join(', '));
+            if (teamsize) lines.push('Teamgröße: ' + teamsize);
             if (message) lines.push('\n' + message);
 
             const body = encodeURIComponent(lines.join('\n'));
-            const subject = encodeURIComponent('KI-Beratung – Erstgespräch' + (company ? ' (' + company + ')' : ''));
+            const subject = encodeURIComponent('KI-Workshop – Erstgespräch' + (company ? ' (' + company + ')' : ''));
             const to = 'hello@tobi-weber.com,christian.braun@theempathicdev.de';
 
             window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;

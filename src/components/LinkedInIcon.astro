@@ -1,0 +1,10 @@
+---
+import rawSvg from '../../public/images/linkedin-icon.svg?raw';
+
+interface Props {
+  class?: string;
+}
+const { class: className = 'w-5 h-5' } = Astro.props;
+const svg = rawSvg.replace('<svg ', `<svg class="${className}" `).replace(/<\?xml[^?]*\?>/, '');
+---
+<Fragment set:html={svg} />

@@ -20,7 +20,7 @@
 /* ── Dark theme overrides ── */
 [data-theme="dark"] {
   --color-heading: #f1f5f9;
-  --color-body: #94a3b8;
+  --color-body: #b8c4d4;
   --color-muted: #64748b;
   --color-accent: #fb923c;
   --color-accent-hover: #fdba74;

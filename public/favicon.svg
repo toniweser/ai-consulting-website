@@ -1,11 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fb923c"/>
-      <stop offset="50%" stop-color="#f472b6"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
-    </linearGradient>
-  </defs>
-  <rect width="128" height="128" rx="24" fill="#151530"/>
-  <text x="64" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="800" font-size="72" fill="url(#g)">BW</text>
+  <rect width="128" height="128" rx="28" fill="#1f1b16"/>
+  <text x="64" y="82" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="500" font-size="52" letter-spacing="-1" fill="#f7f4ee">BW</text>
+  <rect x="38" y="94" width="20" height="4" rx="2" fill="#c2410c"/>
 </svg>

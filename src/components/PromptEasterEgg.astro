@@ -1,0 +1,109 @@
+---
+// Small joke at the very end of the page: prompts everyone has typed, and an agent that takes them literally.
+// Deliberately unresolved, never explain the punchline. Commands are not selectable so nobody copies them.
+// Without JS the first scenario renders statically. With JS a random scenario is shown; with .motion
+// (no reduced motion) it plays once per appearance: prompts, a "thinking" spinner, reply, command.
+// Scrolling away and back plays the next scenario.
+const scenarios = [
+  {
+    prompts: ['you are a senior engineer with 30 years of experience', 'make no mistakes'],
+    reply: 'You’re absolutely right! Let me check for bugs and fix them.',
+    command: 'rm -rf ~/',
+  },
+  {
+    prompts: ['the tests are failing again'],
+    reply: 'Found it. The tests were the problem.',
+    command: 'rm -rf tests/',
+  },
+  {
+    prompts: ['it’s friday 17:55', 'quick fix, then deploy'],
+    reply: 'Perfect timing! Skipping CI to save you some time.',
+    command: 'git push --force origin main',
+  },
+];
+const [first] = scenarios;
+---
+
+<aside class="page pb-12" aria-label="Zum Schluss">
+  <div
+    id="prompt-egg"
+    class="min-h-[168px] max-w-xl border-t border-dashed border-divider pt-8 font-mono text-[13px] leading-6 text-muted"
+    data-scenarios={JSON.stringify(scenarios)}
+  >
+    {first.prompts.map((prompt) => <p>› {prompt}</p>)}
+    <p class="mt-2 text-body">{first.reply}</p>
+    <p class="mt-2 select-none text-heading">$ {first.command}</p>
+  </div>
+</aside>
+
+<script>
+  interface Scenario { prompts: string[]; reply: string; command: string }
+
+  const root = document.getElementById('prompt-egg');
+  if (root) {
+    const scenarios: Scenario[] = JSON.parse(root.dataset.scenarios ?? '[]');
+    const motion = document.documentElement.classList.contains('motion');
+    const words = ['Pondering', 'Noodling', 'Recombobulating', 'Percolating', 'Philosophizing', 'Flibbertigibbeting'];
+    const glyphs = ['·', '✢', '✳', '✶', '✻', '✽'];
+    const wait = (ms: number) => new Promise((done) => setTimeout(done, ms));
+    let index = Math.floor(Math.random() * scenarios.length);
+    let playing = false;
+    let armed = true;
+
+    const line = (text: string, className = '', animate = false) => {
+      const p = document.createElement('p');
+      p.textContent = text;
+      p.className = `${className}${animate ? ' rise' : ''}`.trim();
+      return p;
+    };
+
+    const render = (s: Scenario) => {
+      root.replaceChildren(
+        ...s.prompts.map((prompt) => line(`› ${prompt}`)),
+        line(s.reply, 'mt-2 text-body'),
+        line(`$ ${s.command}`, 'mt-2 select-none text-heading'),
+      );
+    };
+
+    const play = async (s: Scenario) => {
+      playing = true;
+      root.replaceChildren();
+      await wait(400);
+      for (const prompt of s.prompts) {
+        root.append(line(`› ${prompt}`, '', true));
+        await wait(800);
+      }
+      const thinking = line('', 'mt-2 text-accent', true);
+      thinking.setAttribute('aria-hidden', 'true');
+      root.append(thinking);
+      const start = Math.floor(Math.random() * words.length);
+      for (let tick = 0; tick < 20; tick++) {
+        const word = words[(start + Math.floor(tick / 5)) % words.length];
+        thinking.textContent = `${glyphs[tick % glyphs.length]} ${word}…`;
+        await wait(160);
+      }
+      thinking.remove();
+      root.append(line(s.reply, 'mt-2 text-body', true));
+      await wait(1500);
+      root.append(line(`$ ${s.command}`, 'mt-2 select-none text-heading', true));
+      playing = false;
+    };
+
+    if (!motion || !('IntersectionObserver' in window)) {
+      render(scenarios[index]);
+    } else {
+      root.replaceChildren();
+      new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && armed && !playing) {
+            armed = false;
+            play(scenarios[index]);
+            index = (index + 1) % scenarios.length;
+          } else if (!entry.isIntersecting && !playing) {
+            armed = true;
+          }
+        }
+      }, { threshold: 0.6 }).observe(root);
+    }
+  }
+</script>

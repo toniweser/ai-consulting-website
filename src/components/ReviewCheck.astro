@@ -1,0 +1,42 @@
+---
+// Workshop visual: the agent review checks PR #318 against the ticket's acceptance criteria
+// and finds a gap. Same ticket and PR as the hero (AgentSession), one step deeper.
+const criteria = [
+  { met: true, text: 'Rundung auf 2 Nachkommastellen' },
+  { met: true, text: 'Test für Grenzfall 0,005 €' },
+  { met: false, text: 'Auslandsversand nicht berücksichtigt', note: 'Akzeptanzkriterium 3 im Ticket' },
+];
+---
+
+<figure class="overflow-hidden rounded-2xl border border-divider bg-card" data-reveal-group>
+  <figcaption class="sr-only">Beispiel: Ein Agent prüft Pull Request 318 gegen die Akzeptanzkriterien von Ticket SHOP-412 und findet eine Lücke. Die Entscheidung trifft ein Mensch.</figcaption>
+  <div class="flex h-11 items-center gap-3 border-b border-divider px-4 font-mono text-xs text-muted">
+    <span class="flex gap-1.5" aria-hidden="true">
+      <i class="size-2.5 rounded-full bg-raised"></i><i class="size-2.5 rounded-full bg-raised"></i><i class="size-2.5 rounded-full bg-raised"></i>
+    </span>
+    PR #318 · Agent-Review
+  </div>
+  <div class="p-5 sm:p-6">
+    <p class="text-[15px] font-medium text-heading" data-reveal style="--i: 0">Abgleich mit SHOP-412</p>
+    <ul class="mt-4 grid gap-2 font-mono text-[13px] leading-5">
+      {criteria.map((item, index) => (
+        <li
+          class={`grid grid-cols-[20px_1fr] gap-x-2 rounded-lg px-2 py-2 ${item.met ? 'text-body' : 'bg-negative-soft text-negative'}`}
+          data-reveal
+          style={`--i: ${index + 1}`}
+        >
+          <span aria-hidden="true">{item.met ? '✓' : '✗'}</span>
+          <span>
+            <span class="sr-only">{item.met ? 'Erfüllt: ' : 'Fehlt: '}</span>{item.text}
+            {item.note && <span class="block text-muted">{item.note}</span>}
+          </span>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-5 flex flex-wrap gap-x-2 border-t border-dashed border-divider pt-4 font-mono text-[13px] text-muted" data-reveal style="--i: 5">
+      <span>→ Zurück an den Agenten</span>
+      <span aria-hidden="true">·</span>
+      <span class="text-heading">Mensch entscheidet</span>
+    </p>
+  </div>
+</figure>

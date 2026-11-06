@@ -1,9 +1,10 @@
 ---
-import '@fontsource/space-grotesk/400.css';
-import '@fontsource/space-grotesk/500.css';
-import '@fontsource/space-grotesk/600.css';
-import '@fontsource/space-grotesk/700.css';
+import '@fontsource/geist-sans/400.css';
+import '@fontsource/geist-sans/500.css';
+import '@fontsource/geist-mono/400.css';
+import '@fontsource/geist-mono/500.css';
 import '../styles/global.css'
+import { formats, MAX_PARTICIPANTS } from '../data/pricing';
 
 interface Props {
   title: string;
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description = "KI-Beratung für Unternehmen — Christian Braun & Tobias Weber", ogImage, noindex = false } = Astro.props;
+const { title, description = "KI-Workshops für Entwicklungsteams — Christian Braun & Tobias Weber", ogImage, noindex = false } = Astro.props;
 ---
 
 <html lang="de">
@@ -24,6 +25,9 @@ const { title, description = "KI-Beratung für Unternehmen — Christian Braun &
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = saved || (prefersDark ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('motion');
+        }
       })();
     </script>
     <meta charset="utf-8" />
@@ -33,8 +37,8 @@ const { title, description = "KI-Beratung für Unternehmen — Christian Braun &
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" id="meta-theme" content="#eae8e1" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#151530" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" id="meta-theme" content="#f7f4ee" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#161513" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
@@ -53,7 +57,7 @@ const { title, description = "KI-Beratung für Unternehmen — Christian Braun &
       "@type": "ProfessionalService",
       "name": "Braun & Weber KI-Beratung",
       "url": "https://ki-workshop-unternehmen.de",
-      "description": "KI-Workshops für Entwicklerteams — hands-on, an Ihrem Code, mit Coding Agents.",
+      "description": "KI-Workshops für Entwicklungsteams — hands-on, an Ihrem Code, mit Coding Agents.",
       "address": [
         { "@type": "PostalAddress", "addressLocality": "Fürth", "addressRegion": "Bayern", "addressCountry": "DE" }
       ],
@@ -64,13 +68,52 @@ const { title, description = "KI-Beratung für Unternehmen — Christian Braun &
       "knowsAbout": ["Künstliche Intelligenz", "Coding Agents", "Software-Entwicklung", "KI-Workshops"],
       "areaServed": { "@type": "Country", "name": "DE" },
       "telephone": "+4915256719943",
-      "email": "hello@tobi-weber.com"
+      "email": "hello@tobi-weber.com",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "KI-Workshops für Entwicklungsteams",
+        "itemListElement": formats.map((f) => ({
+          "@type": "Offer",
+          "name": `KI-Workshop ${f.mode}, ${f.duration}`,
+          "price": f.price,
+          "priceCurrency": "EUR",
+          "itemOffered": { "@type": "Service", "name": `KI-Workshop für Entwicklungsteams, ${f.mode}, ${f.duration}` },
+          "description": `${f.items.filter((i) => i.included).map((i) => i.text).join(', ')}. Bis ${MAX_PARTICIPANTS} Teilnehmende.`,
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": f.price,
+            "priceCurrency": "EUR",
+            "valueAddedTaxIncluded": false
+          }
+        }))
+      }
     })} />
 
     <title>{title}</title>
   </head>
   <body class="min-h-screen overflow-x-hidden">
     <slot />
+
+    <script is:inline>
+      // Reveal [data-reveal-group] blocks once they scroll into view (see global.css)
+      (function() {
+        var groups = document.querySelectorAll('[data-reveal-group]');
+        var show = function(el) { el.classList.add('is-visible'); };
+        if (!document.documentElement.classList.contains('motion') || !('IntersectionObserver' in window)) {
+          groups.forEach(show);
+          return;
+        }
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              show(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        groups.forEach(function(el) { observer.observe(el); });
+      })();
+    </script>
 
     <script is:inline>
       // Theme toggle
@@ -84,6 +127,9 @@ const { title, description = "KI-Beratung für Unternehmen — Christian Braun &
           var moon = document.getElementById('icon-moon');
           if (sun) sun.style.display = isDark ? 'block' : 'none';
           if (moon) moon.style.display = isDark ? 'none' : 'block';
+          document.querySelectorAll('meta[name="theme-color"]').forEach(function(m) {
+            m.content = isDark ? '#161513' : '#f7f4ee';
+          });
         }
 
         toggle.addEventListener('click', function() {
@@ -91,8 +137,6 @@ const { title, description = "KI-Beratung für Unternehmen — Christian Braun &
           var next = cur === 'dark' ? 'light' : 'dark';
           document.documentElement.setAttribute('data-theme', next);
           localStorage.setItem('theme', next);
-          var metas = document.querySelectorAll('meta[name="theme-color"]');
-          metas.forEach(function(m) { m.content = next === 'dark' ? '#151530' : '#eae8e1'; });
           update();
         });
 

@@ -1,0 +1,13 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="border-t border-divider">
+  <div class="page flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
+    <span class="text-sm text-muted">&copy; 2026 Christian Braun &amp; Tobias Weber</span>
+    <div class="flex gap-6">
+      <a href={`${base}impressum`} class="text-sm text-muted transition-colors duration-150 hover:text-heading">Impressum</a>
+      <a href={`${base}datenschutz`} class="text-sm text-muted transition-colors duration-150 hover:text-heading">Datenschutz</a>
+    </div>
+  </div>
+</footer>
